@@ -21,11 +21,18 @@ export async function createOrder(formData: OrderType) {
       totalAmount,
     } = formData;
 
-    const user = await User.findById(userId);
-    if (!user) {
-      return { success: false, error: "Користувача не знайдено!" };
-    }
+    let user = null;
     if (paymentStatus === "balance") {
+      if (!userId) {
+        return {
+          success: false,
+          error: "Необхідно увійти для оплати балансом!",
+        };
+      }
+      user = await User.findById(userId);
+      if (!user) {
+        return { success: false, error: "Користувача не знайдено!" };
+      }
       if (user.balance < totalAmount) {
         return { success: false, error: "Недостатньо коштів на балансі!" };
       }
@@ -53,7 +60,7 @@ export async function createOrder(formData: OrderType) {
     return {
       success: true,
       data: JSON.parse(JSON.stringify(newOrder)),
-      newBalance: paymentStatus === "balance" ? user.balance : undefined,
+      newBalance: paymentStatus === "balance" ? user?.balance : undefined,
     };
   } catch (error) {
     console.log(error);

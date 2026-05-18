@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -12,7 +12,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background-color: #000;
 }
 
 html {
@@ -29,14 +28,14 @@ html {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0f13;
+  background: #f4f4f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a38;
+  background: #d4d4d8;
   border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7c6aff;
+  background: #7c3aed;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

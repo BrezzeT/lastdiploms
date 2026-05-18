@@ -30,7 +30,7 @@ export type OrderItem = {
 };
 export type Order = {
   _id?: string;
-  userId: string;
+  userId?: string;
   address: string;
   phone: string;
   comment?: string;

@@ -20,12 +20,8 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${outfit.className} bg-black text-zinc-100 min-h-screen antialiased relative selection:bg-violet-500/30`}
+        className={`${outfit.className} bg-slate-50 text-zinc-800 min-h-screen antialiased relative selection:bg-violet-500/10 selection:text-violet-900`}
       >
-        {/* <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden"> */}
-        {/* <div className="absolute top-0 left-0 right-0 h-full bg-linear-to-b from-violet-600/5 to-transparent" /> */}
-        {/* <div className="absolute bottom-0 left-0 right-0 h-full bg-linear-to-t from-indigo-600/5 to-transparent" /> */}
-        {/* </div> */}
         {children}
       </body>
     </html>

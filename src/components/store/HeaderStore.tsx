@@ -18,83 +18,67 @@ export default function HeaderStore() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-black border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div>
-            <Link href={"/"} className="flex items-center gap-2 group">
-              <Zap className="w-6 h-6 text-violet-400 group-hover:text-violet-300 transition-colors" />
-              <div className="text-xl font-semibold text-white group-hover:text-white/80 transition-colors">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200/40">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-8">
+            <Link href={"/"} className="flex items-center gap-2 group shrink-0">
+              <Zap className="w-6 h-6 text-violet-600 group-hover:text-violet-500 transition-colors animate-pulse" />
+              <span className="text-xl font-extrabold text-zinc-900 tracking-tight">
                 ShopFlow
-              </div>
+              </span>
             </Link>
           </div>
-          <div className="flex items-center gap-1 bg-zinc-950/40 border border-white/5 rounded-2xl px-2 py-1.5 min-h-10">
+
+          <div className="flex items-center gap-1 bg-zinc-100/80 border border-zinc-200/40 rounded-full px-2 py-1.5 min-h-10 shadow-xs">
             <>
               {user ? (
                 <>
                   <div className="flex flex-col items-start px-2">
-                    <span className="text-md font-bold text-white truncate max-w-25">
+                    <span className="text-sm font-bold text-zinc-800 truncate max-w-25">
                       {user.name}
                     </span>
                   </div>
-                  <div className="w-px h-4 bg-white/10" />
+                  <div className="w-px h-4 bg-zinc-200/80" />
                   <button
                     type="button"
                     onClick={clearUser}
-                    className="p-1.5 text-zinc-400 hover:text-red-400 transition-colors rounded-lg"
+                    className="p-1.5 text-zinc-500 hover:text-red-600 transition-colors rounded-full hover:bg-white"
                     aria-label="Вийти"
                   >
-                    <LogOut className="w-5 h-5" />
+                    <LogOut className="w-4 h-4" />
                   </button>
                 </>
               ) : (
                 <button
                   onClick={() => setIsAuthOpen(true)}
-                  className="p-1.5 rounded-lg text-zinc-400 hover:text-white transition-all"
+                  className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200"
                   aria-label="Увійти або зареєструватися"
                   type="button"
                 >
-                  <User className="w-5 h-5" />
+                  <User className="w-4.5 h-4.5" />
                 </button>
               )}
-              <div className="w-px h-4 bg-white/10" />
+              <div className="w-px h-4 bg-zinc-200/80" />
               <button
                 type="button"
                 onClick={openCart}
-                className="p-1.5 rounded-lg text-zinc-400 hover:text-white transition-all relative"
+                className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200 relative"
                 aria-label="Кошик"
               >
-                <ShoppingCart className="w-5 h-5" />
+                <ShoppingCart className="w-4.5 h-4.5" />
                 <CartBadge />
               </button>
-              <div className="w-px h-4 bg-white/10" />
+              <div className="w-px h-4 bg-zinc-200/80" />
               <Link
                 href={"/admin"}
-                className="p-1.5 text-zinc-400 hover:text-white transition-colors rounded-lg"
+                className="p-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-white transition-colors rounded-full"
               >
-                <Home className="w-5 h-5" />
+                <Home className="w-4.5 h-4.5" />
               </Link>
             </>
           </div>
         </div>
       </header>
-
-      <nav className="bg-black border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-11 flex items-center gap-2">
-          <Link
-            href="/catalog"
-            className="px-3 py-1 rounded-lg text-sm font-medium text-zinc-500 hover:text-white hover:bg-white/5 transition-colors"
-          >
-            Каталог
-          </Link>
-          <Link
-            href="/catalog?new=true"
-            className="px-3 py-1 rounded-lg text-sm font-medium text-zinc-500 hover:text-white hover:bg-white/5 transition-colors"
-          >
-            Новинки
-          </Link>
-        </div>
-      </nav>
 
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       <CartModal />

@@ -21,16 +21,16 @@ const CheckoutForm = dynamic(
 
 export default function CheckoutPage() {
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex items-center flex-col md:flex-row gap-4 justify-between">
+    <div className="space-y-8 py-6">
+      <div className="flex flex-col gap-3 border-b border-zinc-200/40 pb-6">
         <Link
           href="/"
-          className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm font-medium"
+          className="inline-flex items-center gap-1.5 self-start px-3.5 py-1.5 rounded-full bg-white hover:bg-zinc-100 text-zinc-600 hover:text-zinc-900 transition-all text-xs font-bold shadow-xs border border-zinc-200/40"
         >
           <ChevronLeft className="w-4 h-4" />
           Повернутись до покупок
         </Link>
-        <h1 className="text-xl font-bold text-white uppercase tracking-tight">
+        <h1 className="text-3xl font-extrabold text-zinc-950 tracking-tight">
           Оформлення замовлення
         </h1>
       </div>

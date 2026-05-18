@@ -83,35 +83,39 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
   }
 
   return (
-    <div className="group bg-zinc-900/20 border border-white/5 rounded-3xl overflow-hidden hover:border-white/30 transition-colors">
-      <div className="aspect-square bg-zinc-900/40 flex items-center justify-center">
-        <ImageProduct size={48} className="text-zinc-800" />
+    <div className="group bg-white border border-zinc-200/50 rounded-3xl overflow-hidden hover:border-zinc-300/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500">
+      <div className="aspect-square bg-linear-to-b from-zinc-50 to-zinc-100/50 flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-radial from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <ImageProduct
+          size={48}
+          className="text-zinc-300 group-hover:text-violet-500 group-hover:scale-110 transition-all duration-500 shrink-0"
+        />
       </div>
-      <div className="p-4 space-y-3">
+      <div className="p-5 space-y-4">
         <div>
-          <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mb-1">
+          <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider mb-1.5">
             {product.category}
           </p>
-          <h3 className="text-white font-bold text-sm truncate">
+          <h3 className="text-zinc-800 font-bold text-sm truncate group-hover:text-zinc-950 transition-colors">
             {product.name}
           </h3>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="text-lg font-black text-white">
+        <div className="flex items-center justify-between gap-4 pt-1">
+          <p className="text-lg font-extrabold text-zinc-900 tracking-tight shrink-0">
             {product.price.toLocaleString()} ₴
           </p>
-          <div className="flex items-center justify-between gap-3 pt-2">
-            <div className="h-10 flex items-center gap-1 bg-white/5 rounded-xl px-1 border border-white/5">
+          <div className="flex items-center justify-between gap-2">
+            <div className="h-9 flex items-center gap-1.5 bg-zinc-100 rounded-full px-1 border border-zinc-200/10">
               <button
                 aria-label="Зменшити кількість"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 disabled={product.stock <= 0}
-                className="w-8 h-8 flex items-center justify-center rounded-lg text-zinc-500 hover:text-white hover:bg-white/5 transition-all disabled:opacity-20"
+                className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-zinc-200/60 disabled:bg-transparent text-zinc-500 hover:text-zinc-800 transition-all disabled:opacity-20 shadow-xs border border-zinc-200/20 disabled:border-none"
               >
-                <Minus size={14} />
+                <Minus size={12} />
               </button>
               <span
-                className={`text-xs font-bold w-5 text-center ${product.stock <= 0 ? "text-zinc-700" : "text-white"}`}
+                className={`text-xs font-bold w-5 text-center ${product.stock <= 0 ? "text-zinc-400" : "text-zinc-800"}`}
               >
                 {product.stock <= 0 ? 0 : quantity}
               </span>
@@ -121,21 +125,21 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
                   setQuantity(Math.min(product.stock, quantity + 1))
                 }
                 disabled={quantity >= product.stock || product.stock <= 0}
-                className="w-8 h-8 flex items-center justify-center rounded-lg text-zinc-500 hover:text-white hover:bg-white/5 transition-all disabled:opacity-20"
+                className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-zinc-200/60 disabled:bg-transparent text-zinc-500 hover:text-zinc-800 transition-all disabled:opacity-20 shadow-xs border border-zinc-200/20 disabled:border-none"
               >
-                <Plus size={14} />
+                <Plus size={12} />
               </button>
             </div>
 
             <button
               onClick={handleAddToCart}
               disabled={product.stock <= 0}
-              className="w-10 h-10 rounded-xl bg-white/40 text-white hover:bg-white/50 transition-all active:scale-95 flex items-center justify-center shrink-0 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:shadow-none disabled:cursor-not-allowed"
+              className="w-9 h-9 rounded-full bg-violet-600 text-white hover:bg-violet-500 transition-all active:scale-90 flex items-center justify-center shrink-0 disabled:bg-zinc-100 disabled:text-zinc-300 disabled:shadow-none disabled:cursor-not-allowed shadow-md shadow-violet-600/10 hover:shadow-lg hover:shadow-violet-600/20"
               aria-label={
                 product.stock <= 0 ? "Немає в наявності" : "Додати в кошик"
               }
             >
-              <ShoppingCart size={18} />
+              <ShoppingCart size={16} />
             </button>
           </div>
         </div>
