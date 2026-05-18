@@ -78,6 +78,7 @@ export async function updateUserBalance(userId: string, amount: number) {
       return { success: false, error: "Користувача не знайдено" };
     }
     revalidatePath("/checkout");
+    revalidatePath("/(store)");
     return { success: true, data: JSON.parse(JSON.stringify(updateUser)) };
   } catch (error) {
     console.log(error);

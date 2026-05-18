@@ -1,12 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { User, ShoppingCart, Zap, LogOut, Home } from "lucide-react";
 import Link from "next/link";
 import AuthModal from "../shared/AuthModal";
 import CartModal from "./CartModal";
 import { useAuthStore } from "@/src/store/useAuthStore";
 import { useCartStore } from "@/src/store/useCartStore";
-import { getUserBalance } from "@/src/lib/actions/user.actions";
 import dynamic from "next/dynamic";
 
 const CartBadge = dynamic(() => import("./CartBadge"), {
