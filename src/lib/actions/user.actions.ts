@@ -4,6 +4,7 @@ import dbConnect from "../db";
 import User from "@/src/models/User";
 import bcrypt from "bcryptjs";
 import { User as UserType } from "@/src/types";
+import { revalidatePath } from "next/cache";
 
 export async function registerUser(formData: UserType) {
   try {
@@ -76,6 +77,7 @@ export async function updateUserBalance(userId: string, amount: number) {
     if (!updateUser) {
       return { success: false, error: "Користувача не знайдено" };
     }
+    revalidatePath("/checkout");
     return { success: true, data: JSON.parse(JSON.stringify(updateUser)) };
   } catch (error) {
     console.log(error);
