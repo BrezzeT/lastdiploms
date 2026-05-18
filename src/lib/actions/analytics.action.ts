@@ -43,7 +43,6 @@ export async function getDashStats() {
       }),
     );
 
-    // Дохід за останні 7 днів
     const now = new Date();
     const revenueTrend: SalesDay[] = Array.from({ length: 7 }, (_, i) => {
       const dayStart = new Date(now);

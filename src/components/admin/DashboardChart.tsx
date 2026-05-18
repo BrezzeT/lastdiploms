@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -16,9 +17,21 @@ interface Props {
 }
 
 export default function DashboardChart({ data }: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={data} margin={{ top: 4, right: 4, left: 15, bottom: 0 }}>
+      <BarChart
+        data={data}
+        margin={{ top: 4, right: 4, left: isMobile ? -30 : 15, bottom: 0 }}
+      >
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
         <XAxis
           dataKey="date"
@@ -27,6 +40,7 @@ export default function DashboardChart({ data }: Props) {
           tickLine={false}
         />
         <YAxis
+          hide={isMobile}
           tick={{ fill: "#71717a", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
