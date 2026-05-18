@@ -10,6 +10,7 @@ export async function createProduct(formData: ProductType) {
     await dbConnect();
     const newProduct = await Product.create(formData);
     revalidatePath("/admin/products");
+    revalidatePath("/catalog");
     return {
       success: true,
       data: JSON.parse(JSON.stringify(newProduct)),

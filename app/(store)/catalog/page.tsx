@@ -1,7 +1,8 @@
-"use server";
 import ProductCard from "@/src/components/shared/ProductCard";
 import { Product as ProductType } from "@/src/types";
 import { getProducts } from "@/src/lib/actions/product.actions";
+
+export const dynamic = "force-dynamic";
 
 export default async function CatalogPage() {
   const res = await getProducts();
