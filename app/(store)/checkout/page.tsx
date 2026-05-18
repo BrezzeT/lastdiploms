@@ -21,8 +21,8 @@ const CheckoutForm = dynamic(
 
 export default function CheckoutPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="max-w-7xl mx-auto space-y-6">
+      <div className="flex items-center flex-col md:flex-row gap-4 justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm font-medium"
