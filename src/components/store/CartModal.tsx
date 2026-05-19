@@ -90,7 +90,9 @@ export default function CartModal() {
         {items.length > 0 && (
           <div className="px-6 sm:px-10 py-8 border-t border-zinc-100 bg-zinc-50/50">
             <div className="flex justify-between items-center mb-8">
-              <span className="text-lg font-semibold text-zinc-500">Всього</span>
+              <span className="text-lg font-semibold text-zinc-500">
+                Всього
+              </span>
               <span className="text-2xl font-bold text-zinc-950">
                 {getTotal().toLocaleString()} ₴
               </span>
