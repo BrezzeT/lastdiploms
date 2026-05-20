@@ -85,10 +85,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </p>
         </div>
 
-        <div className="flex bg-zinc-100 p-1 rounded-2xl mb-8 border border-zinc-200/50">
+        <div className="flex bg-zinc-100 p-1.5 rounded-full mb-8 border border-zinc-200/50">
           <button
             onClick={() => setMode("login")}
-            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${
+            className={`flex-1 py-2.5 text-base font-bold rounded-full transition-all duration-300 ${
               mode === "login"
                 ? "bg-white text-zinc-950 shadow-sm"
                 : "text-zinc-500 hover:text-zinc-800"
@@ -98,7 +98,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </button>
           <button
             onClick={() => setMode("register")}
-            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${
+            className={`flex-1 py-2.5 text-base font-bold rounded-full transition-all duration-300 ${
               mode === "register"
                 ? "bg-white text-zinc-950 shadow-sm"
                 : "text-zinc-500 hover:text-zinc-800"
@@ -129,7 +129,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-4 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
+                  className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-3 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
                 />
               </div>
             </div>
@@ -149,7 +149,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-4 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
+                className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-3 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-4 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
+                className="w-full bg-zinc-50 border border-zinc-200/80 rounded-2xl py-3 pl-12 pr-4 text-sm text-zinc-900 outline-none focus:border-violet-500/50 focus:bg-white transition-all placeholder:text-zinc-400"
               />
             </div>
           </div>
@@ -176,9 +176,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <div className="pt-6">
             <button
               type="submit"
-              className="w-full py-5 bg-violet-600 text-white rounded-3xl font-bold text-base hover:bg-violet-500 transition-all active:scale-95 shadow-lg shadow-violet-600/10"
+              className="w-full py-3.5 bg-violet-600 text-white rounded-full font-bold text-base hover:bg-violet-500 transition-all active:scale-95 shadow-md shadow-violet-600/10 hover:shadow-violet-600/20"
             >
-              {mode === "login" ? "Увійти" : "Створити акаунт"}
+              {mode === "login" ? "Увійти" : "Реєстрація"}
             </button>
           </div>
         </form>

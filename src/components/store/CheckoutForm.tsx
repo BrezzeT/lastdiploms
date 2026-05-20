@@ -117,8 +117,7 @@ export default function CheckoutForm() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div className="md:col-span-2 space-y-6">
-        <div className="bg-white border border-zinc-200/40 p-8 rounded-4xl space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
-          {/* Section 1: Delivery */}
+        <div className="bg-white border border-zinc-200 p-6 sm:p-8 rounded-[32px] md:rounded-[40px] space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
           <div className="space-y-6">
             <h3 className="text-lg font-extrabold text-zinc-900 flex items-center gap-3">
               <span className="w-10 h-10 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0">
@@ -140,7 +139,7 @@ export default function CheckoutForm() {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     placeholder="+380..."
-                    className="w-full bg-zinc-50 border border-zinc-200/50 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 pl-11 pr-4 text-sm text-zinc-900 outline-none transition-all placeholder:text-zinc-400/80 shadow-xs"
+                    className="w-full bg-zinc-50 border border-zinc-200 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 pl-11 pr-4 text-sm text-zinc-900 outline-none transition-all placeholder:text-zinc-400/80 shadow-xs"
                   />
                 </div>
               </div>
@@ -157,7 +156,7 @@ export default function CheckoutForm() {
                       setFormData({ ...formData, address: e.target.value })
                     }
                     placeholder="Місто, відділення..."
-                    className="w-full bg-zinc-50 border border-zinc-200/50 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 pl-11 pr-4 text-sm text-zinc-900 outline-none transition-all placeholder:text-zinc-400/80 shadow-xs"
+                    className="w-full bg-zinc-50 border border-zinc-200 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 pl-11 pr-4 text-sm text-zinc-900 outline-none transition-all placeholder:text-zinc-400/80 shadow-xs"
                   />
                 </div>
               </div>
@@ -172,14 +171,13 @@ export default function CheckoutForm() {
                   setFormData({ ...formData, comment: e.target.value })
                 }
                 placeholder="Додаткова інформація..."
-                className="w-full bg-zinc-50 border border-zinc-200/50 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 px-4 text-sm text-zinc-900 outline-none transition-all min-h-28 resize-none placeholder:text-zinc-400/80 shadow-xs"
+                className="w-full bg-zinc-50 border border-zinc-200 focus:border-violet-500 focus:bg-white rounded-2xl py-3.5 px-4 text-sm text-zinc-900 outline-none transition-all min-h-28 resize-none placeholder:text-zinc-400/80 shadow-xs"
               />
             </div>
           </div>
 
           <div className="h-px bg-zinc-100/80" />
 
-          {/* Section 2: Payment */}
           <div className="space-y-6">
             <h3 className="text-lg font-extrabold text-zinc-900 flex items-center gap-3">
               <span className="w-10 h-10 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0">
@@ -198,7 +196,7 @@ export default function CheckoutForm() {
                   className={`p-5 rounded-2xl border transition-all flex items-center gap-3 cursor-pointer ${
                     formData.paymentStatus === "balance"
                       ? "bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-600/15"
-                      : "bg-zinc-50 border-zinc-200/60 text-zinc-600 hover:bg-zinc-100/50 hover:border-zinc-300"
+                      : "bg-zinc-50 border-zinc-200 text-zinc-600 hover:bg-zinc-100/50 hover:border-zinc-300"
                   }`}
                 >
                   <Wallet className="w-5 h-5 shrink-0" />
@@ -214,7 +212,7 @@ export default function CheckoutForm() {
                   </div>
                 </button>
               ) : (
-                <div className="p-5 rounded-2xl border transition-all flex items-center justify-center gap-3 bg-zinc-50 border-zinc-200/60 text-zinc-400 hover:bg-zinc-100/50 hover:border-zinc-300">
+                <div className="p-5 rounded-2xl border transition-all flex items-center justify-center gap-3 bg-zinc-50 border-zinc-200 text-zinc-400 hover:bg-zinc-100/50 hover:border-zinc-300">
                   <div className="absolute w-32 h-32 opacity-0 blur-4xl" />
                   <button
                     onClick={() => setIsAuthModal(true)}
@@ -240,7 +238,7 @@ export default function CheckoutForm() {
                 className={`p-5 rounded-2xl border transition-all flex items-center gap-3 cursor-pointer ${
                   formData.paymentStatus === "cash"
                     ? "bg-zinc-900 border-zinc-900 text-white font-bold shadow-lg shadow-zinc-900/10"
-                    : "bg-zinc-50 border-zinc-200/60 text-zinc-600 hover:bg-zinc-100/50 hover:border-zinc-300"
+                    : "bg-zinc-50 border-zinc-200 text-zinc-600 hover:bg-zinc-100/50 hover:border-zinc-300"
                 }`}
               >
                 <Truck className="w-5 h-5 shrink-0" />
@@ -259,7 +257,7 @@ export default function CheckoutForm() {
       </div>
 
       <div className="space-y-6">
-        <div className="bg-white border border-zinc-200/40 p-8 rounded-4xl space-y-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+        <div className="bg-white border border-zinc-200 p-6 sm:p-8 rounded-[32px] md:rounded-[40px] space-y-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
           <h3 className="text-lg font-extrabold text-zinc-900 mb-4">
             Ваше замовлення
           </h3>
@@ -316,12 +314,12 @@ export default function CheckoutForm() {
           <button
             onClick={handleOrder}
             disabled={isSaving || items.length === 0}
-            className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 py-4 rounded-xl text-white text-sm font-bold uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 py-3.5 rounded-full text-white text-base font-bold transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
           >
             {isSaving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              "Підтвердити замовлення"
+              "Підтвердити"
             )}
           </button>
         </div>

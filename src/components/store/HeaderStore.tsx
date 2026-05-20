@@ -110,7 +110,7 @@ export default function HeaderStore() {
         </div>
 
         <div className="hidden md:block w-full border-t border-zinc-200">
-          <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-center gap-12">
+          <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-start gap-12">
             <Link
               href="/"
               className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
@@ -184,11 +184,20 @@ export default function HeaderStore() {
               )}
             </Link>
           ) : (
-            <div className="flex items-center gap-1 bg-zinc-100 rounded-full px-2.5 py-1">
-              <span className="text-[11px] font-extrabold text-zinc-700 truncate max-w-15">
-                {user.name.split(" ")[0]}
-              </span>
-            </div>
+            <Link
+              href="/profile"
+              className={`flex flex-col items-center justify-center p-2 rounded-full transition-all duration-300 relative ${
+                isActive("/profile")
+                  ? "text-violet-600 scale-110"
+                  : "text-violet-600 bg-violet-50/80"
+              }`}
+            >
+              <User className="w-5 h-5" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full border border-white animate-pulse" />
+              {isActive("/profile") && (
+                <span className="absolute bottom-0 w-1 h-1 bg-violet-600 rounded-full" />
+              )}
+            </Link>
           )
         ) : (
           <button

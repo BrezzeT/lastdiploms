@@ -83,8 +83,8 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
   }
 
   return (
-    <div className="group bg-white border border-zinc-200/50 rounded-3xl overflow-hidden hover:border-zinc-300/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500">
-      <div className="aspect-square bg-linear-to-b from-zinc-50 to-zinc-100/50 flex items-center justify-center relative overflow-hidden">
+    <div className="group bg-zinc-50 hover:bg-white border border-zinc-200/60 rounded-3xl overflow-hidden hover:border-zinc-300/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500">
+      <div className="aspect-square bg-linear-to-b from-zinc-100/50 to-zinc-200/30 flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-radial from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <ImageProduct
           size={48}
