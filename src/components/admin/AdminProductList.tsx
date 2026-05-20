@@ -45,8 +45,8 @@ export default function AdminProductList({
 
   return (
     <div className="space-y-6">
-      <div className="bg-zinc-900/10 p-4 rounded-3xl border border-white/5 space-y-4">
-        <div className="flex gap-3">
+      <div className="bg-[#0b0c10]/40 p-4 rounded-3xl border border-zinc-800/40 space-y-4 shadow-xs">
+        <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
             <input
@@ -54,13 +54,13 @@ export default function AdminProductList({
               placeholder="Швидкий пошук товарів..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-black/40 border border-white/5 rounded-xl py-2.5 pl-12 pr-4 text-sm text-white outline-none focus:border-violet-500/30 transition-all placeholder:text-zinc-700"
+              className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-2.5 pl-12 pr-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 placeholder:text-zinc-600 shadow-inner transition-all"
             />
           </div>
 
           <Link
             href="/admin/products/new"
-            className="flex items-center gap-2 px-6 rounded-xl bg-violet-600 text-white text-sm font-bold hover:bg-violet-500 transition-all active:scale-95"
+            className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-bold shadow-lg shadow-violet-600/10 hover:shadow-violet-600/20 active:scale-95 transition-all duration-200 cursor-pointer shrink-0"
           >
             <Plus className="w-4 h-4" />
             <span>Додати товар</span>
@@ -101,22 +101,22 @@ export default function AdminProductList({
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`flex items-center justify-between px-4 py-3 rounded-2xl border transition-all ${
+              className={`flex items-center justify-between px-4 py-3 rounded-2xl border transition-all cursor-pointer ${
                 activeFilter === f.id
-                  ? "bg-white text-black border-white"
-                  : "bg-black/40 border-white/5 text-zinc-500 hover:text-white"
+                  ? "bg-violet-600/15 text-violet-400 border-violet-500/30 shadow-md shadow-violet-500/5"
+                  : "bg-zinc-950/40 border-zinc-800/40 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/40"
               }`}
             >
               <div className="flex items-center gap-3">
                 <f.icon
-                  className={`w-4 h-4 ${activeFilter === f.id ? "text-black" : f.color}`}
+                  className={`w-4 h-4 ${activeFilter === f.id ? "text-violet-400" : f.color}`}
                 />
                 <span className="text-xs font-bold uppercase tracking-wider">
                   {f.label}
                 </span>
               </div>
               <span
-                className={`text-[10px] font-black ${activeFilter === f.id ? "opacity-50" : "opacity-20"}`}
+                className={`text-[10px] font-black ${activeFilter === f.id ? "text-violet-400/90" : "text-zinc-600"}`}
               >
                 {f.count}
               </span>
@@ -131,7 +131,7 @@ export default function AdminProductList({
             <ProductCard key={product._id} product={product} isAdmin />
           ))
         ) : (
-          <div className="py-20 text-center bg-zinc-900/5 border border-dashed border-white/5 rounded-3xl">
+          <div className="py-20 text-center bg-zinc-900/5 border border-dashed border-zinc-800/40 rounded-3xl">
             <p className="text-zinc-500 text-sm italic">Нічого не знайдено</p>
           </div>
         )}

@@ -32,17 +32,31 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
   };
   if (isAdmin) {
     return (
-      <div className="flex items-center gap-4 bg-zinc-900/10 border border-white/5 p-5 rounded-2xl hover:border-violet-500/30 transition-colors group">
-        <div className="w-12 h-12 rounded-xl bg-zinc-900/30 flex items-center justify-center shrink-0">
-          <ImageProduct size={20} className="text-zinc-700" />
+      <div className="flex items-center gap-4 bg-[#0b0c10]/40 border border-zinc-800/40 p-4 sm:p-5 rounded-2xl hover:border-violet-500/30 hover:bg-[#0b0c10]/60 transition-all duration-300 group">
+        <div className="w-12 h-12 rounded-xl bg-violet-950/20 text-violet-400 flex items-center justify-center shrink-0 border border-violet-500/10">
+          <ImageProduct size={20} className="text-violet-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-white font-bold text-sm truncate">
+          <h3 className="text-white font-bold text-sm truncate group-hover:text-violet-300 transition-colors">
             {product.name}
           </h3>
-          <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
-            {product.category}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1">
+            <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
+              {product.category}
+            </span>
+            <span className="text-zinc-700 text-[10px] md:hidden">•</span>
+            <span className="text-xs font-bold text-violet-400/90 md:hidden">
+              {product.price.toLocaleString()} ₴
+            </span>
+            <span className="text-zinc-700 text-[10px] md:hidden">•</span>
+            <span
+              className={`text-[10px] font-extrabold md:hidden ${
+                product.stock > 5 ? "text-emerald-500" : "text-red-500"
+              }`}
+            >
+              {product.stock} шт
+            </span>
+          </div>
         </div>
         <div className="hidden md:flex items-center gap-8 px-4">
           <div className="text-right min-w-20">
@@ -58,21 +72,23 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
               Склад
             </p>
             <p
-              className={`text-sm font-bold ${product.stock > 5 ? "text-emerald-500" : "text-red-500"}`}
+              className={`text-sm font-bold ${
+                product.stock > 5 ? "text-emerald-500" : "text-red-500"
+              }`}
             >
               {product.stock} шт
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 pl-4 border-l border-white/5">
+        <div className="flex items-center gap-2 pl-4 border-l border-zinc-800/40 shrink-0">
           <button
-            className="p-2.5 rounded-xl bg-white/5 text-zinc-400 hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-zinc-900/40 border border-zinc-800/40 text-zinc-400 hover:text-white hover:bg-zinc-800/60 active:scale-90 transition-all cursor-pointer"
             aria-label="Редагувати товар"
           >
             <Edit2 size={16} />
           </button>
           <button
-            className="p-2.5 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500 hover:text-white active:scale-90 transition-all cursor-pointer"
             aria-label="Видалити товар"
           >
             <Trash2 size={16} />

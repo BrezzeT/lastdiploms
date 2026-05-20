@@ -24,8 +24,8 @@ export default function AdminLayout({
 
       <div className="flex-1 flex flex-col min-w-0 relative ">
         <AdminHeader title={getTitle()} />
-        <main className="flex-1 p-6 relative bg-black ">
-          <div className="max-w-7xl mx-auto ">
+        <main className="flex-1 p-6 md:p-8 relative bg-[#060709]">
+          <div className="max-w-7xl mx-auto">
             <div className="mt-2">{children}</div>
           </div>
         </main>

@@ -31,10 +31,13 @@ export default function HeaderStore() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-zinc-200">
+      <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-zinc-200">
         <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
           <div className="flex items-center">
-            <Link href={"/"} className="flex items-center gap-2 group shrink-0">
+            <Link
+              href={"/"}
+              className="flex items-center gap-2 group shrink-0"
+            >
               <Zap className="w-6 h-6 text-violet-600 group-hover:text-violet-500 transition-colors animate-pulse" />
               <span className="text-xl font-extrabold text-zinc-900 tracking-tight">
                 ShopFlow
@@ -108,32 +111,32 @@ export default function HeaderStore() {
             )}
           </div>
         </div>
-
-        <div className="hidden md:block w-full border-t border-zinc-200">
-          <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-start gap-12">
-            <Link
-              href="/"
-              className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
-                isActive("/")
-                  ? "text-violet-600 border-violet-600 font-bold"
-                  : "text-zinc-500 hover:text-zinc-900 border-transparent"
-              }`}
-            >
-              Головна
-            </Link>
-            <Link
-              href="/catalog"
-              className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
-                isActive("/catalog")
-                  ? "text-violet-600 border-violet-600 font-bold"
-                  : "text-zinc-500 hover:text-zinc-900 border-transparent"
-              }`}
-            >
-              Каталог
-            </Link>
-          </div>
-        </div>
       </header>
+
+      <div className="hidden md:block w-full border-b border-zinc-200 bg-white">
+        <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-start gap-12">
+          <Link
+            href="/"
+            className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
+              isActive("/")
+                ? "text-violet-600 border-violet-600 font-bold"
+                : "text-zinc-500 hover:text-zinc-900 border-transparent"
+            }`}
+          >
+            Головна
+          </Link>
+          <Link
+            href="/catalog"
+            className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
+              isActive("/catalog")
+                ? "text-violet-600 border-violet-600 font-bold"
+                : "text-zinc-500 hover:text-zinc-900 border-transparent"
+            }`}
+          >
+            Каталог
+          </Link>
+        </div>
+      </div>
 
       <div className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm bg-white/75 backdrop-blur-lg border border-zinc-200/50 rounded-full px-5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] flex items-center justify-between">
         <Link
