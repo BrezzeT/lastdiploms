@@ -9,10 +9,11 @@ import {
   LayoutGrid,
   LogIn,
   User2,
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import AuthModal from "@/src/modules/users/components/AuthModal";
-import CartModal from "@/src/modules/layout/store/components/CartModal";
+import CartModal from "@/src/modules/layout/store/components/CartDraw";
 import { useAuthStore } from "@/src/modules/users/store/useAuthStore";
 import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
 import dynamic from "next/dynamic";
@@ -52,54 +53,61 @@ export default function HeaderStore() {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-2 bg-zinc-100/80 border border-zinc-200 rounded-full px-2  min-h-10 shadow-xs">
-            {isMounted && user ? (
-              <>
-                <div className="flex flex-col">
+          <div className="hidden md:flex items-center gap-3">
+            {isMounted && user && (
+              <div className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-50 text-emerald-600 rounded-full font-black text-sm border border-emerald-200/60 shadow-xs cursor-default transition-all hover:bg-emerald-100/50 hover:border-emerald-300/50">
+                <Wallet className="w-4 h-4" />
+                {user.balance.toLocaleString()} ₴
+              </div>
+            )}
+
+            <div className="flex items-center gap-1 bg-zinc-100/80 border border-zinc-200 rounded-full px-2 min-h-10 shadow-xs">
+              {isMounted && user ? (
+                <>
                   <Link
                     href="/profile"
                     className="text-violet-700 p-2 rounded-full hover:bg-white transition-all duration-200 cursor-pointer"
                   >
                     <User2 className="w-4 h-4" />
                   </Link>
-                </div>
-                <div className="w-px h-5 bg-zinc-200" />
+                  <div className="w-px h-5 bg-zinc-200 mx-1" />
+                  <button
+                    type="button"
+                    onClick={clearUser}
+                    className="p-2 text-zinc-500 hover:text-red-600 transition-colors rounded-full hover:bg-white cursor-pointer"
+                    aria-label="Вийти"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </>
+              ) : (
                 <button
+                  onClick={() => setIsAuthOpen(true)}
+                  className="p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200 cursor-pointer"
+                  aria-label="Увійти або зареєструватися"
                   type="button"
-                  onClick={clearUser}
-                  className="p-2 text-zinc-500 hover:text-red-600 transition-colors rounded-full hover:bg-white cursor-pointer"
-                  aria-label="Вийти"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <User className="w-4.5 h-4.5" />
                 </button>
-              </>
-            ) : (
+              )}
+              <div className="w-px h-5 bg-zinc-200 mx-1" />
               <button
-                onClick={() => setIsAuthOpen(true)}
-                className="p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200 cursor-pointer"
-                aria-label="Увійти або зареєструватися"
                 type="button"
+                onClick={openCart}
+                className="p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200 relative cursor-pointer"
+                aria-label="Кошик"
               >
-                <User className="w-4.5 h-4.5" />
+                <ShoppingCart className="w-4.5 h-4.5" />
+                <CartBadge />
               </button>
-            )}
-            <div className="w-px h-5 bg-zinc-200" />
-            <button
-              type="button"
-              onClick={openCart}
-              className="p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white transition-all duration-200 relative cursor-pointer"
-              aria-label="Кошик"
-            >
-              <ShoppingCart className="w-4.5 h-4.5" />
-              <CartBadge />
-            </button>
-            <div className="w-px h-5 bg-zinc-200" />
-            <Link
-              href={"/admin"}
-              className="p-2 text-zinc-500 hover:text-zinc-900 hover:bg-white transition-colors rounded-full"
-            >
-              <Home className="w-4.5 h-4.5" />
-            </Link>
+              <div className="w-px h-5 bg-zinc-200 mx-1" />
+              <Link
+                href={"/admin"}
+                className="p-2 text-zinc-500 hover:text-zinc-900 hover:bg-white transition-colors rounded-full"
+              >
+                <Home className="w-4.5 h-4.5" />
+              </Link>
+            </div>
           </div>
 
           <div className="flex md:hidden items-center gap-3">
@@ -125,16 +133,6 @@ export default function HeaderStore() {
 
       <div className="hidden md:block w-full border-b border-zinc-200 bg-white">
         <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-start gap-12">
-          <Link
-            href="/"
-            className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${
-              isActive("/")
-                ? "text-violet-600 border-violet-600 font-bold"
-                : "text-zinc-500 hover:text-zinc-900 border-transparent"
-            }`}
-          >
-            Головна
-          </Link>
           <Link
             href="/catalog"
             className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${

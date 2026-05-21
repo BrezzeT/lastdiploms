@@ -102,7 +102,9 @@ export default function CheckoutForm() {
         }
 
         clearCart();
-        router.push("/");
+        router.push(
+          `/orders/order-success?id=${result.data._id}&payment=${formData.paymentStatus}`,
+        );
         toast.success("Замовлення успішно створено!", {
           description: "Деталі замовлення будуть відправлені в телеграм",
         });

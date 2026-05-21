@@ -110,3 +110,16 @@ export async function updateOrderStatus(orderId: string, status: string) {
     return { success: false, error: "Помилка при оновленні статусу" };
   }
 }
+export async function getOrderById(orderId: string) {
+  try {
+    await dbConnect();
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return { success: false, error: "Замовлення не знайдено" };
+    }
+    return { success: true, data: JSON.parse(JSON.stringify(order)) };
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: "Помилка при отриманні замовлення" };
+  }
+}
