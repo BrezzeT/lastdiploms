@@ -1,5 +1,5 @@
-import FooterStore from "@/src/components/store/FooterStore";
-import HeaderStore from "@/src/components/store/HeaderStore";
+import FooterStore from "@/src/modules/layout/store/components/FooterStore";
+import HeaderStore from "@/src/modules/layout/store/components/HeaderStore";
 
 export default function StoreLayout({
   children,
@@ -9,7 +9,7 @@ export default function StoreLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <HeaderStore />
-      <main className="flex-1 relative max-w-7xl mx-auto w-full px-6 md:px-8 py-6">
+      <main className="flex-1 relative max-w-7xl mx-auto w-full px-6 md:px-8 md:py-12 py-6">
         {children}
       </main>
       <FooterStore />

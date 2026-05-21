@@ -1,6 +1,6 @@
-import ProductCard from "@/src/components/shared/ProductCard";
-import { Product as ProductType } from "@/src/types";
-import { getProducts } from "@/src/lib/actions/product.actions";
+import ProductCard from "@/src/modules/products/components/ProductCard";
+import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { getProducts } from "@/src/modules/products/product.actions";
 import { Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -10,7 +10,7 @@ export default async function CatalogPage() {
   const products = res.success ? res.data : [];
 
   return (
-    <div className="space-y-10 py-12 md:py-20">
+    <div className="space-y-10">
       <div className="border-b border-zinc-200 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet-200 bg-violet-50 text-violet-600 text-xs font-bold mb-4 shadow-xs">

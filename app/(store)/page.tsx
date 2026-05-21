@@ -3,7 +3,7 @@ import { ArrowRight, Zap } from "lucide-react";
 
 export default function StoreFront() {
   return (
-    <section className="relative overflow-hidden py-12 md:py-20">
+    <section className="relative overflow-hidden">
       <div className="relative z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/10 bg-violet-500/5 text-violet-600 text-[13px] font-semibold mb-8">
           <Zap className="w-3.5 h-3.5 animate-pulse" />
@@ -13,7 +13,7 @@ export default function StoreFront() {
         <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight mb-8">
           <span className="text-zinc-900">Знайди все,</span>
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 to-indigo-600">
             що потрібно
           </span>
         </h1>

@@ -1,5 +1,5 @@
-import { getProducts } from "@/src/lib/actions/product.actions";
-import AdminProductList from "@/src/components/admin/AdminProductList";
+import { getProducts } from "@/src/modules/products/product.actions";
+import AdminProductList from "@/src/modules/products/components/AdminProductList";
 
 export default async function ProductsPage() {
   const res = await getProducts();

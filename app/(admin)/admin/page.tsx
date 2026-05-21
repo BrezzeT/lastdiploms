@@ -1,5 +1,5 @@
-import { getDashStats } from "@/src/lib/actions/analytics.action";
-import DashboardChart from "@/src/components/admin/DashboardChart";
+import { getDashStats } from "@/src/modules/analytics/analytics.actions";
+import DashboardChart from "@/src/modules/analytics/components/DashboardChart";
 import { DollarSign, ShoppingCart, Users, TrendingUp } from "lucide-react";
 
 export const dynamic = "force-dynamic";

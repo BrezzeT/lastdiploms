@@ -7,7 +7,7 @@ import Link from "next/link";
 const CheckoutForm = dynamic(
   async () => {
     await new Promise((r) => setTimeout(r, 1000));
-    return import("@/src/components/store/CheckoutForm");
+    return import("@/src/modules/orders/components/CheckoutForm");
   },
   {
     ssr: false,
@@ -21,7 +21,7 @@ const CheckoutForm = dynamic(
 
 export default function CheckoutPage() {
   return (
-    <div className="space-y-8 py-6">
+    <div className="space-y-8 ">
       <div className="flex flex-col gap-3 border-b border-zinc-200 pb-6">
         <Link
           href="/"

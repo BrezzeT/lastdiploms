@@ -1,4 +1,4 @@
-import AdminOrderList from "@/src/components/admin/AdminOrderList";
+import AdminOrderList from "@/src/modules/orders/components/AdminOrderList";
 
 export default function OrdersPage() {
   return (

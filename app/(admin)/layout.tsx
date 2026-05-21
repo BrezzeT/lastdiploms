@@ -1,6 +1,6 @@
 "use client";
-import AdminSidebar from "@/src/components/admin/AdminSidebar";
-import AdminHeader from "@/src/components/admin/AdminHeader";
+import AdminSidebar from "@/src/modules/layout/admin/components/AdminSidebar";
+import AdminHeader from "@/src/modules/layout/admin/components/AdminHeader";
 import { usePathname } from "next/navigation";
 
 export default function AdminLayout({
@@ -13,9 +13,10 @@ export default function AdminLayout({
   const getTitle = () => {
     if (pathname.includes("products")) return "Керування товарами";
     if (pathname.includes("orders")) return "Замовлення";
+    if (pathname.includes("users")) return "Користувачі";
     if (pathname.includes("analytics")) return "Аналітика та звіти";
     if (pathname.includes("settings")) return "Налаштування системи";
-    return "Огляд дашборду";
+    return "Дашборд адміністратора";
   };
 
   return (
