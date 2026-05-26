@@ -123,3 +123,20 @@ export async function getOrderById(orderId: string) {
     return { success: false, error: "Помилка при отриманні замовлення" };
   }
 }
+export async function getUserOrders(userId: string) {
+  try {
+    await dbConnect();
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(orders)),
+      total: orders.length,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: "Помилка при отриманні замовлень користувача",
+    };
+  }
+}

@@ -48,7 +48,7 @@ export default function HeaderStore() {
             <Link href={"/"} className="flex items-center gap-2 group shrink-0">
               <Zap className="w-6 h-6 text-violet-600 group-hover:text-violet-500 transition-colors animate-pulse" />
               <span className="text-xl font-extrabold text-zinc-900 tracking-tight">
-                ShopFlow
+                ShopFlow/
               </span>
             </Link>
           </div>
@@ -132,7 +132,7 @@ export default function HeaderStore() {
       </header>
 
       <div className="hidden md:block w-full border-b border-zinc-200 bg-white">
-        <div className="max-w-7xl mx-auto px-8 h-14 flex items-center justify-start gap-12">
+        <div className="max-w-7xl mx-auto h-10 flex items-center justify-start gap-12">
           <Link
             href="/catalog"
             className={`text-sm font-semibold transition-all duration-200 h-full flex items-center border-b-2 px-1 -mb-px ${

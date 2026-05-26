@@ -6,6 +6,7 @@ import {
   Settings,
   Users,
 } from "lucide-react";
+import { Order, OrderStatus } from "./types";
 
 export const ADMIN_MENU_ITEMS = [
   { label: "Дашборд", href: "/admin", icon: LayoutDashboard },
@@ -50,3 +51,33 @@ export const PRODUCT_COLORS = [
   { name: "Red", hex: "#ff0000" },
   { name: "Gold", hex: "#ffd700" },
 ];
+export const PROFILE_MENU_ITEMS = [
+  { label: "Мої замовлення", href: "/profile/orders", icon: ShoppingCart },
+  { label: "Налаштування", href: "/profile/settings", icon: Settings },
+];
+
+export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
+  pending: "Очікується",
+  paid: "Оплачено",
+  shipped: "В дорозі",
+  delivered: "Доставлено",
+  cancelled: "Скасовано",
+};
+export const ORDER_STATUS_STYLES_STORE: Record<OrderStatus, string> = {
+  pending: "text-amber-600 bg-amber-50 border-amber-200",
+  paid: "text-emerald-600 bg-emerald-50 border-emerald-200",
+  shipped: "text-blue-600 bg-blue-50 border-blue-200",
+  delivered: "text-indigo-600 bg-indigo-50 border-indigo-200",
+  cancelled: "text-red-600 bg-red-50 border-red-200",
+};
+export const ORDER_STATUS_STYLES_ADMIN: Record<OrderStatus, string> = {
+  pending: "text-amber-400 bg-amber-500/10 border-amber-500/15",
+  paid: "text-emerald-400 bg-emerald-500/10 border-emerald-500/15",
+  shipped: "text-blue-400 bg-blue-500/10 border-blue-500/15",
+  delivered: "text-indigo-400 bg-indigo-500/10 border-indigo-500/15",
+  cancelled: "text-rose-400 bg-rose-500/10 border-rose-500/15",
+};
+export const PAYMENT_LABELS = {
+  balance: "Баланс",
+  cash: "Готівка",
+} as const;
