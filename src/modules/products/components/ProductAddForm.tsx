@@ -20,7 +20,6 @@ export default function NewProductPage() {
     brand: "",
     color: "",
     stock: 0,
-    sku: "",
   });
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,21 +175,6 @@ export default function NewProductPage() {
                     setFormData({ ...formData, stock: Number(e.target.value) })
                   }
                   placeholder="0"
-                  className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-3 px-4 text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">
-                  SKU
-                </label>
-                <input
-                  aria-label="SKU"
-                  type="text"
-                  value={formData.sku}
-                  onChange={(e) =>
-                    setFormData({ ...formData, sku: e.target.value })
-                  }
-                  placeholder="IPH-15"
                   className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-3 px-4 text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
                 />
               </div>

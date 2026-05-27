@@ -11,7 +11,6 @@ const ProductSchema = new Schema<ProductType>(
     slug: {
       type: String,
       required: [true, "Введіть slug"],
-      unique: true,
       lowercase: true,
     },
     price: {
@@ -37,11 +36,6 @@ const ProductSchema = new Schema<ProductType>(
       type: Number,
       required: [true, "Введіть кількість на складі"],
       default: 0,
-    },
-    sku: {
-      type: String,
-      unique: true,
-      sparse: true,
     },
     isFeatured: {
       type: Boolean,

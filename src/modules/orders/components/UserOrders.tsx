@@ -82,7 +82,6 @@ export default function UserOrders({ order }: UserOrdersProps) {
               {steps.map((step, idx) => {
                 const isCompleted = idx < currentStepIndex;
                 const isActive = idx === currentStepIndex;
-                const isPending = idx > currentStepIndex;
 
                 return (
                   <div key={step.key} className="space-y-2">

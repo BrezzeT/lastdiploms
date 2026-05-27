@@ -20,7 +20,6 @@ export default function EditProductModal({
     name: product.name,
     price: product.price,
     stock: product.stock,
-    sku: product.sku || "",
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -98,20 +97,6 @@ export default function EditProductModal({
                 className="w-full bg-zinc-950/60 border border-zinc-800 focus:border-violet-500/50 focus:bg-zinc-950 rounded-2xl py-2.5 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
               />
             </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider pl-1">
-              Артикул (SKU)
-            </label>
-            <input
-              type="text"
-              value={editForm.sku}
-              onChange={(e) =>
-                setEditForm({ ...editForm, sku: e.target.value })
-              }
-              className="w-full bg-zinc-950/60 border border-zinc-800 focus:border-violet-500/50 focus:bg-zinc-950 rounded-2xl py-2.5 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
-            />
           </div>
 
           <div className="pt-2 flex gap-3">

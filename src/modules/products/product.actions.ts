@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 export async function createProduct(formData: ProductType) {
   try {
     await dbConnect();
+
     const newProduct = await Product.create(formData);
     revalidatePath("/admin/products");
     revalidatePath("/catalog");
@@ -41,6 +42,7 @@ export async function updateProduct(
 ) {
   try {
     await dbConnect();
+
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
       { $set: formData },
@@ -77,5 +79,22 @@ export async function deleteProduct(id: string) {
   } catch (error) {
     console.log(error);
     return { success: false, error: "Помилка при видаленні товару" };
+  }
+}
+
+export async function getProductById(id: string) {
+  try {
+    await dbConnect();
+    const product = await Product.findById(id);
+    if (!product) {
+      return { success: false, error: "Товар не знайдено" };
+    }
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(product)),
+    };
+  } catch (error) {
+    console.log(error);
+    return { success: false, error: "Помилка при отриманні товару" };
   }
 }

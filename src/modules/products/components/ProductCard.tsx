@@ -9,11 +9,14 @@ import {
   Minus,
   Plus,
 } from "lucide-react";
+import Link from "next/link";
 import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
 import { useState } from "react";
 import { deleteProduct } from "@/src/modules/products/product.actions";
 import EditProductModal from "./EditProductModal";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
+import { cardHoverEffect } from "../../layout/shared/animations";
 
 interface ProductCardProps {
   product: ProductType;
@@ -34,7 +37,6 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
       image: product.images?.[0] || "",
       stock: product.stock,
     });
-    toast.success(`Додано ${quantity} "${product.name}" до кошика!`);
     openCart();
   };
 
@@ -126,7 +128,10 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
   }
 
   return (
-    <div className="group bg-zinc-50 hover:bg-white border border-zinc-200/60 rounded-3xl overflow-hidden hover:border-zinc-300/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500">
+    <motion.div
+      {...cardHoverEffect}
+      className="group bg-zinc-50 hover:bg-white border border-zinc-200/60 rounded-3xl overflow-hidden hover:border-zinc-300/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500"
+    >
       <div className="aspect-square bg-linear-to-b from-zinc-100/50 to-zinc-200/30 flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-radial from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <ImageProduct
@@ -139,9 +144,11 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
           <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider mb-1.5">
             {product.category}
           </p>
-          <h3 className="text-zinc-800 font-bold text-sm truncate group-hover:text-zinc-950 transition-colors">
-            {product.name}
-          </h3>
+          <Link href={`/catalog/${product._id}`}>
+            <h3 className="text-zinc-800 font-bold text-sm truncate group-hover:text-zinc-950 transition-colors">
+              {product.name}
+            </h3>
+          </Link>
         </div>
         <div className="flex items-center justify-between gap-4 pt-1">
           <p className="text-lg font-extrabold text-zinc-900 tracking-tight shrink-0">
@@ -187,6 +194,6 @@ export default function ProductCard({ product, isAdmin }: ProductCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

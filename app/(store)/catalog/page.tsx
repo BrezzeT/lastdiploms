@@ -1,5 +1,4 @@
-import ProductCard from "@/src/modules/products/components/ProductCard";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import AnimationProductGrid from "@/src/modules/products/components/AnimationProductGrid";
 import { getProducts } from "@/src/modules/products/product.actions";
 import { Sparkles } from "lucide-react";
 
@@ -37,11 +36,7 @@ export default async function CatalogPage() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map((product: ProductType) => (
-            <ProductCard key={product._id} product={product} isAdmin={false} />
-          ))}
-        </div>
+        <AnimationProductGrid products={products} />
       )}
     </div>
   );
