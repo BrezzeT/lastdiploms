@@ -5,6 +5,10 @@ import {
   BarChart3,
   Settings,
   Users,
+  type LucideIcon,
+  Headphones,
+  Laptop,
+  Smartphone,
 } from "lucide-react";
 import { Order, OrderStatus } from "./types";
 
@@ -39,6 +43,45 @@ export const PRODUCT_CATEGORIES = [
     subcategories: ["Чохли", "Зарядки", "Кабелі", "PowerBank"],
   },
 ];
+export const CATEGORY_STYLES: Record<
+  string,
+  {
+    icon: LucideIcon;
+    gradient: string;
+    lightGradient: string;
+    borderColor: string;
+    iconBg: string;
+  }
+> = {
+  phones: {
+    icon: Smartphone,
+    gradient: "from-violet-500 to-indigo-600",
+    lightGradient: "from-violet-50 to-indigo-50",
+    borderColor: "border-violet-100",
+    iconBg: "bg-violet-100 text-violet-600",
+  },
+  laptops: {
+    icon: Laptop,
+    gradient: "from-blue-500 to-cyan-600",
+    lightGradient: "from-blue-50 to-cyan-50",
+    borderColor: "border-blue-100",
+    iconBg: "bg-blue-100 text-blue-600",
+  },
+  audio: {
+    icon: Headphones,
+    gradient: "from-pink-500 to-rose-600",
+    lightGradient: "from-pink-50 to-rose-50",
+    borderColor: "border-pink-100",
+    iconBg: "bg-pink-100 text-pink-600",
+  },
+  accessories: {
+    icon: Package,
+    gradient: "from-amber-500 to-orange-600",
+    lightGradient: "from-amber-50 to-orange-50",
+    borderColor: "border-amber-100",
+    iconBg: "bg-amber-100 text-amber-600",
+  },
+};
 
 export const PRODUCT_COLORS = [
   { name: "Space Gray", hex: "#4b4b4b" },

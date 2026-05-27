@@ -98,3 +98,25 @@ export async function getProductById(id: string) {
     return { success: false, error: "Помилка при отриманні товару" };
   }
 }
+
+export async function getCategoryCounts() {
+  try {
+    await dbConnect();
+    const counts = await Product.aggregate([
+      { $group: { _id: "$category", count: { $sum: 1 } } }
+    ]);
+    
+    const countMap: Record<string, number> = {};
+    counts.forEach((item) => {
+      if (item._id) {
+        countMap[item._id] = item.count;
+      }
+    });
+
+    return { success: true, data: countMap };
+  } catch (error) {
+    console.log(error);
+    return { success: false, data: {} };
+  }
+}
+
