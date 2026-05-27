@@ -34,7 +34,7 @@ const itemVariants = {
 export default function HomeCategories({ counts }: Props) {
   return (
     <motion.section
-      className="space-y-6 mt-16"
+      className="space-y-6 mt-8"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"

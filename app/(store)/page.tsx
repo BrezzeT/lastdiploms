@@ -7,7 +7,7 @@ export default async function StoreFront() {
   const counts = countsResponse.success ? countsResponse.data : {};
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-8 md:space-y-16">
       <Hero />
       <div className="max-w-7xl mx-auto ">
         <HomeCategories counts={counts} />
