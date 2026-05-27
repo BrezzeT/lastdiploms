@@ -112,6 +112,7 @@ export default function HeaderStore() {
 
           <div className="flex md:hidden items-center gap-3">
             <button
+              aria-label="Кошик"
               type="button"
               onClick={openCart}
               className="p-2 bg-zinc-100 rounded-full text-zinc-600 hover:text-zinc-950 active:scale-90 transition-all duration-200 relative cursor-pointer"
@@ -121,6 +122,8 @@ export default function HeaderStore() {
             </button>
             {isMounted && user && (
               <button
+                aria-label="Вийти"
+                type="button"
                 onClick={clearUser}
                 className="p-2 bg-red-50 text-red-500 rounded-full active:scale-90 transition-all duration-200 cursor-pointer"
               >
@@ -146,7 +149,7 @@ export default function HeaderStore() {
         </div>
       </div>
 
-      <div className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm bg-white/75 backdrop-blur-lg border border-zinc-200/50 rounded-full px-5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] flex items-center justify-between">
+      <div className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[85%] max-w-72 bg-white/75 backdrop-blur-lg border border-zinc-200/50 rounded-full px-4 py-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.06)] flex items-center justify-between">
         <Link
           href="/"
           className={`flex flex-col items-center justify-center p-2 rounded-full transition-all duration-300 relative ${
@@ -172,6 +175,7 @@ export default function HeaderStore() {
         </Link>
 
         <button
+          aria-label="Кошик"
           onClick={openCart}
           className="flex flex-col items-center justify-center p-2 rounded-full text-zinc-500 active:scale-95 transition-transform relative cursor-pointer"
         >
@@ -212,6 +216,8 @@ export default function HeaderStore() {
           )
         ) : (
           <button
+            type="button"
+            aria-label="Увійти"
             onClick={() => setIsAuthOpen(true)}
             className="flex flex-col items-center justify-center p-2 rounded-full text-zinc-500 active:scale-95 transition-transform cursor-pointer"
           >

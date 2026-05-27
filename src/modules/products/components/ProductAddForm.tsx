@@ -20,6 +20,7 @@ export default function NewProductPage() {
     brand: "",
     color: "",
     stock: 0,
+    isFeatured: false,
   });
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -178,6 +179,25 @@ export default function NewProductPage() {
                   className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-3 px-4 text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
                 />
               </div>
+            </div>
+
+            <div className="h-px bg-zinc-800/40" />
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id="isFeatured"
+                checked={formData.isFeatured}
+                onChange={(e) =>
+                  setFormData({ ...formData, isFeatured: e.target.checked })
+                }
+                className="w-4 h-4 rounded border-zinc-800 bg-zinc-950 text-violet-600 focus:ring-violet-500/10 focus:ring-offset-zinc-900 focus:ring-2 cursor-pointer"
+              />
+              <label
+                htmlFor="isFeatured"
+                className="text-xs font-bold text-zinc-300 cursor-pointer select-none uppercase tracking-wider"
+              >
+                Рекомендований товар (на головній)
+              </label>
             </div>
           </div>
 

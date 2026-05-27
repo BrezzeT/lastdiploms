@@ -9,8 +9,13 @@ import {
   Headphones,
   Laptop,
   Smartphone,
+  Filter,
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  Sparkles,
 } from "lucide-react";
-import { Order, OrderStatus } from "./types";
+import { OrderStatus } from "./types";
 
 export const ADMIN_MENU_ITEMS = [
   { label: "Дашборд", href: "/admin", icon: LayoutDashboard },
@@ -19,6 +24,39 @@ export const ADMIN_MENU_ITEMS = [
   { label: "Користувачі", href: "/admin/users", icon: Users },
   { label: "Аналітика", href: "/admin/analytics", icon: BarChart3 },
   { label: "Налаштування", href: "/admin/settings", icon: Settings },
+];
+
+export const ADMIN_PRODUCT_FILTERS = [
+  {
+    id: "all",
+    label: "Всі товари",
+    icon: Filter,
+    color: "text-zinc-400",
+  },
+  {
+    id: "featured",
+    label: "Рекомендовані",
+    icon: Sparkles,
+    color: "text-violet-400",
+  },
+  {
+    id: "in-stock",
+    label: "В наявності",
+    icon: CheckCircle2,
+    color: "text-emerald-500",
+  },
+  {
+    id: "low-stock",
+    label: "Закінчуються",
+    icon: AlertTriangle,
+    color: "text-amber-500",
+  },
+  {
+    id: "out-of-stock",
+    label: "Немає",
+    icon: XCircle,
+    color: "text-red-500",
+  },
 ];
 
 export const PRODUCT_CATEGORIES = [

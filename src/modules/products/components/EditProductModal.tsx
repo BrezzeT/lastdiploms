@@ -20,6 +20,7 @@ export default function EditProductModal({
     name: product.name,
     price: product.price,
     stock: product.stock,
+    isFeatured: product.isFeatured || false,
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -43,6 +44,7 @@ export default function EditProductModal({
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-white">Редагування товару</h3>
           <button
+            aria-label="Закрити модальне вікно"
             type="button"
             onClick={onClose}
             className="p-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"
@@ -57,6 +59,7 @@ export default function EditProductModal({
               Назва товару
             </label>
             <input
+              aria-label="Назва товару"
               type="text"
               required
               value={editForm.name}
@@ -73,6 +76,7 @@ export default function EditProductModal({
                 Ціна (₴)
               </label>
               <input
+                aria-label="Ціна товару"
                 type="number"
                 required
                 value={editForm.price}
@@ -88,6 +92,7 @@ export default function EditProductModal({
                 Кількість (шт)
               </label>
               <input
+                aria-label="Кількість товару"
                 type="number"
                 required
                 value={editForm.stock}
@@ -97,6 +102,24 @@ export default function EditProductModal({
                 className="w-full bg-zinc-950/60 border border-zinc-800 focus:border-violet-500/50 focus:bg-zinc-950 rounded-2xl py-2.5 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
               />
             </div>
+          </div>
+
+          <div className="flex items-center gap-3 bg-zinc-950/60 border border-zinc-800 p-4 rounded-2xl">
+            <input
+              type="checkbox"
+              id="editIsFeatured"
+              checked={editForm.isFeatured}
+              onChange={(e) =>
+                setEditForm({ ...editForm, isFeatured: e.target.checked })
+              }
+              className="w-4 h-4 rounded border-zinc-800 bg-zinc-950 text-violet-600 focus:ring-violet-500/10 focus:ring-offset-zinc-900 focus:ring-2 cursor-pointer"
+            />
+            <label
+              htmlFor="editIsFeatured"
+              className="text-xs font-bold text-zinc-300 cursor-pointer select-none uppercase tracking-wider"
+            >
+              Рекомендований товар (на головній)
+            </label>
           </div>
 
           <div className="pt-2 flex gap-3">

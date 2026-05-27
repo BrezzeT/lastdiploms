@@ -1,17 +1,11 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import {
-  Search,
-  Filter,
-  CheckCircle2,
-  AlertTriangle,
-  XCircle,
-  Plus,
-} from "lucide-react";
+import { Search, Plus } from "lucide-react";
 import Link from "next/link";
 import ProductCard from "@/src/modules/products/components/ProductCard";
 import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { ADMIN_PRODUCT_FILTERS } from "../../layout/shared/constants";
 
 export default function AdminProductList({
   initialProducts,
@@ -28,6 +22,7 @@ export default function AdminProductList({
         product.sku?.toLowerCase().includes(searchQuery.toLowerCase());
       if (!matchesSearch) return false;
       if (activeFilter === "all") return true;
+      if (activeFilter === "featured") return product.isFeatured;
       if (activeFilter === "in-stock") return product.stock > 5;
       if (activeFilter === "low-stock")
         return product.stock <= 5 && product.stock > 0;
@@ -36,11 +31,13 @@ export default function AdminProductList({
     });
   }, [initialProducts, searchQuery, activeFilter]);
 
-  const stats = {
+  const stats: Record<string, number> = {
     all: initialProducts.length,
-    inStock: initialProducts.filter((p) => p.stock > 5).length,
-    lowStock: initialProducts.filter((p) => p.stock <= 5 && p.stock > 0).length,
-    outOfStock: initialProducts.filter((p) => p.stock === 0).length,
+    featured: initialProducts.filter((p) => p.isFeatured).length,
+    "in-stock": initialProducts.filter((p) => p.stock > 5).length,
+    "low-stock": initialProducts.filter((p) => p.stock <= 5 && p.stock > 0)
+      .length,
+    "out-of-stock": initialProducts.filter((p) => p.stock === 0).length,
   };
 
   return (
@@ -67,37 +64,8 @@ export default function AdminProductList({
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-          {[
-            {
-              id: "all",
-              label: "Всі товари",
-              icon: Filter,
-              count: stats.all,
-              color: "text-zinc-400",
-            },
-            {
-              id: "in-stock",
-              label: "В наявності",
-              icon: CheckCircle2,
-              count: stats.inStock,
-              color: "text-emerald-500",
-            },
-            {
-              id: "low-stock",
-              label: "Закінчуються",
-              icon: AlertTriangle,
-              count: stats.lowStock,
-              color: "text-amber-500",
-            },
-            {
-              id: "out-of-stock",
-              label: "Немає",
-              icon: XCircle,
-              count: stats.outOfStock,
-              color: "text-red-500",
-            },
-          ].map((f) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+          {ADMIN_PRODUCT_FILTERS.map((f) => (
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
@@ -118,7 +86,7 @@ export default function AdminProductList({
               <span
                 className={`text-[10px] font-black ${activeFilter === f.id ? "text-violet-400/90" : "text-zinc-600"}`}
               >
-                {f.count}
+                {stats[f.id] ?? 0}
               </span>
             </button>
           ))}

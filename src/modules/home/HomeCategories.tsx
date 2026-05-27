@@ -6,15 +6,20 @@ import {
   CATEGORY_STYLES,
 } from "../layout/shared/constants";
 
+import { Layers, ArrowRight } from "lucide-react";
+
 type Props = {
   counts: Record<string, number>;
 };
 
 const containerVariants = {
-  hidden: {},
+  hidden: { opacity: 0, x: -100 },
   show: {
+    opacity: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.4,
+      duration: 0.7,
     },
   },
 };
@@ -25,7 +30,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4,
+      duration: 0.6,
       ease: "easeOut" as const,
     },
   },
@@ -41,22 +46,27 @@ export default function HomeCategories({ counts }: Props) {
       viewport={{ once: true, margin: "-50px" }}
     >
       <motion.div
-        className="flex items-end justify-between"
+        className="flex items-end justify-between border-b border-zinc-100 pb-5"
         variants={itemVariants}
       >
         <div>
-          <p className="text-xs font-black uppercase tracking-widest text-violet-500 mb-1">
-            Огляд
-          </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/10 bg-violet-500/5 text-violet-600 text-xs font-bold mb-3">
+            <Layers className="w-3.5 h-3.5" />
+            Огляд каталогу
+          </div>
           <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 tracking-tight">
             Категорії товарів
           </h2>
+          <p className="text-zinc-500 text-sm mt-1 max-w-xl">
+            Швидкий перехід до потрібних розділів нашого магазину.
+          </p>
         </div>
         <Link
           href="/catalog"
-          className="text-xs font-bold text-zinc-400 hover:text-violet-600 uppercase tracking-widest transition-colors hidden sm:block"
+          className="group hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-zinc-400 hover:text-violet-600 uppercase tracking-widest transition-colors shrink-0"
         >
-          Всі товари →
+          Всі
+          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </Link>
       </motion.div>
 

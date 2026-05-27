@@ -9,7 +9,7 @@ export default function StoreLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <HeaderStore />
-      <main className="flex-1 relative max-w-7xl mx-auto w-full px-6 md:px-8 md:py-12 py-6">
+      <main className="flex-1 relative max-w-7xl mx-auto w-full px-6 md:px-8 md:py-12 pt-6 pb-24">
         <div className="min-h-screen">{children}</div>
       </main>
       <FooterStore />
