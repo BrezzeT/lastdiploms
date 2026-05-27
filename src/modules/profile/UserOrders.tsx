@@ -1,9 +1,11 @@
+"use client";
+
 import {
   ORDER_STATUS_LABELS,
   ORDER_STATUS_STYLES_STORE,
   PAYMENT_LABELS,
-} from "../../layout/shared/constants";
-import { Order, OrderStatus } from "../../layout/shared/types";
+} from "../layout/shared/constants";
+import { Order, OrderStatus } from "../layout/shared/types";
 import {
   Phone,
   MapPin,
@@ -13,10 +15,23 @@ import {
   Clock,
   ClipboardList,
 } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 type UserOrdersProps = {
   order: Order;
 };
+const cardVariants: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      delay: delay,
+    },
+  }),
+} as const;
 
 export default function UserOrders({ order }: UserOrdersProps) {
   const status = (order.status ?? "pending") as OrderStatus;
@@ -33,7 +48,13 @@ export default function UserOrders({ order }: UserOrdersProps) {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white border border-zinc-100 rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-6">
+      <motion.div
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        custom={0.1}
+        className="bg-white border border-zinc-100 rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-6"
+      >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-zinc-100">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
@@ -124,10 +145,17 @@ export default function UserOrders({ order }: UserOrdersProps) {
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
+
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         <div className="md:col-span-5 space-y-6">
-          <div className="bg-white border border-zinc-100 rounded-3xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-4">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0.2}
+            className="bg-white border border-zinc-100 rounded-3xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-4"
+          >
             <h4 className="text-xs font-black uppercase tracking-widest text-zinc-400">
               Доставка
             </h4>
@@ -169,8 +197,14 @@ export default function UserOrders({ order }: UserOrdersProps) {
                 </div>
               )}
             </div>
-          </div>
-          <div className="bg-white border border-zinc-100 rounded-3xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-4">
+          </motion.div>
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0.3}
+            className="bg-white border border-zinc-100 rounded-3xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] space-y-4"
+          >
             <h4 className="text-xs font-black uppercase tracking-widest text-zinc-400">
               Оплата
             </h4>
@@ -197,9 +231,15 @@ export default function UserOrders({ order }: UserOrdersProps) {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-        <div className="md:col-span-7">
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          custom={0.4}
+          className="md:col-span-7"
+        >
           <div className="bg-white border border-zinc-100 rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col justify-between h-full space-y-6">
             <div className="space-y-4">
               <h4 className="text-xs font-black uppercase tracking-widest text-zinc-400 border-b border-zinc-100 pb-3">
@@ -241,7 +281,7 @@ export default function UserOrders({ order }: UserOrdersProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

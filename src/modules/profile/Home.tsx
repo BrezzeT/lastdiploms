@@ -7,6 +7,7 @@ import ProfileOrders from "./ProfileOrders";
 import ProfileSettings from "./ProfileSettings";
 import { PROFILE_MENU_ITEMS } from "../layout/shared/constants";
 import { Order as OrderType } from "../layout/shared/types";
+import { motion } from "framer-motion";
 
 export default function ProfileHome() {
   const { user } = useAuthStore();
@@ -28,7 +29,12 @@ export default function ProfileHome() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row gap-6 items-start">
-        <aside className="w-full md:w-80 shrink-0 top-6">
+        <motion.aside
+          className="w-full md:w-80 shrink-0 top-6"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <div className="bg-white rounded-3xl p-6 border border-zinc-100 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col gap-5">
             <p className="text-xs font-black uppercase tracking-widest text-zinc-400">
               Покупець
@@ -51,7 +57,7 @@ export default function ProfileHome() {
               </p>
             </div>
           </div>
-        </aside>
+        </motion.aside>
         <main className="flex-1 w-full min-w-0">
           <div className="flex items-center justify-between h-5 mb-4">
             <h2 className="text-xs font-black uppercase tracking-widest text-zinc-400">
@@ -81,13 +87,16 @@ export default function ProfileHome() {
           {activeTab === null ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {PROFILE_MENU_ITEMS.map((item) => (
-                <button
+                <motion.button
                   key={item.href}
                   onClick={() => {
                     setActiveTab(item.href);
                     setSelectedOrder(null);
                   }}
                   className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col items-center gap-4 hover:border-violet-200 hover:shadow-[0_8px_30px_rgba(139,92,246,0.1)] transition-all active:scale-[0.98] cursor-pointer group w-full"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "linear" }}
                 >
                   <div className="w-16 h-16 bg-violet-50 text-violet-500 group-hover:bg-violet-100 rounded-2xl flex items-center justify-center transition-colors">
                     <item.icon className="w-8 h-8" />
@@ -95,7 +104,7 @@ export default function ProfileHome() {
                   <p className="text-sm font-bold text-zinc-700 group-hover:text-violet-600 transition-colors text-center">
                     {item.label}
                   </p>
-                </button>
+                </motion.button>
               ))}
             </div>
           ) : (

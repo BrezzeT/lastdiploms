@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getOrderById } from "@/src/modules/orders/order.actions";
-import UserOrders from "@/src/modules/orders/components/UserOrders";
+import UserOrders from "@/src/modules/profile/UserOrders";
 
 type PageProps = {
   searchParams: Promise<{ id?: string }>;

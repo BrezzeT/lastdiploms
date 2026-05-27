@@ -9,13 +9,26 @@ import {
   ORDER_STATUS_LABELS,
   ORDER_STATUS_STYLES_STORE,
 } from "../layout/shared/constants";
-import UserOrders from "../orders/components/UserOrders";
+import UserOrders from "./UserOrders";
+import { motion, Variants } from "framer-motion";
 
 const PAGE_SIZE = 5;
 
 type ProfileOrdersProps = {
   selectedOrder: OrderType | null;
   setSelectedOrder: (order: OrderType | null) => void;
+};
+
+const orderItemVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: (index: number) => ({
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      ease: "linear",
+      delay: index * 0.05,
+    },
+  }),
 };
 
 export default function ProfileOrders({
@@ -72,13 +85,17 @@ export default function ProfileOrders({
 
   return (
     <div className="flex flex-col gap-3">
-      {visibleOrders.map((order) => {
+      {visibleOrders.map((order, index) => {
         const status = (order.status ?? "pending") as OrderStatus;
 
         return (
-          <button
+          <motion.button
             key={order._id}
             type="button"
+            variants={orderItemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={index}
             onClick={() => setSelectedOrder(order)}
             className="bg-white border border-zinc-100 rounded-2xl p-3 sm:p-4 block w-full text-left cursor-pointer hover:border-zinc-200 transition-colors hover:shadow-sm"
           >
@@ -111,18 +128,21 @@ export default function ProfileOrders({
                 </li>
               ))}
             </ul>
-          </button>
+          </motion.button>
         );
       })}
 
       {hasMore && (
-        <button
+        <motion.button
           type="button"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: visibleOrders.length * 0.05 }}
           onClick={() => setShowAll((prev) => !prev)}
-          className="py-2.5 text-xs font-bold uppercase tracking-widest text-violet-600 hover:text-violet-500 border border-violet-200 rounded-2xl bg-violet-50/50 hover:bg-violet-50 transition-colors cursor-pointer"
+          className="py-2.5 text-xs font-bold uppercase tracking-widest text-violet-600 hover:text-violet-500 border border-violet-200 rounded-2xl bg-violet-50/50 hover:bg-violet-50 transition-colors cursor-pointer text-center"
         >
           {showAll ? "Згорнути" : `Показати ще (${orders.length - PAGE_SIZE})`}
-        </button>
+        </motion.button>
       )}
     </div>
   );
