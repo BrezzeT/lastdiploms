@@ -52,6 +52,7 @@ export type User = {
   role: UserRole;
   balance: number;
   createdAt?: Date;
+  avatar: string;
 };
 
 export type CartItem = {

@@ -208,10 +208,6 @@ export default function HeaderStore() {
               }`}
             >
               <User className="w-5 h-5" />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full border border-white animate-pulse" />
-              {isActive("/profile") && (
-                <span className="absolute bottom-0 w-1 h-1 bg-violet-600 rounded-full" />
-              )}
             </Link>
           )
         ) : (

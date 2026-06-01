@@ -41,8 +41,17 @@ export default function ProfileHome() {
             </p>
 
             <div className="flex flex-col items-center gap-3 py-2">
-              <div className="w-16 h-16 bg-violet-50 text-violet-600 rounded-full flex items-center justify-center">
-                <User2 className="w-8 h-8" />
+              <div className="w-16 h-16 bg-violet-50 text-violet-600 rounded-full flex items-center justify-center overflow-hidden border border-zinc-150">
+                {user.avatar ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User2 className="w-8 h-8" />
+                )}
               </div>
               <div className="text-center">
                 <p className="font-black text-zinc-900">{user.name}</p>

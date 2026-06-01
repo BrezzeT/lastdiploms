@@ -3,9 +3,12 @@ import { persist } from "zustand/middleware";
 import { User } from "@/src/modules/layout/shared/types";
 
 interface AuthState {
-  user: Pick<User, "_id" | "name" | "email" | "role" | "balance"> | null;
+  user: Pick<
+    User,
+    "_id" | "name" | "email" | "role" | "balance" | "avatar"
+  > | null;
   setUser: (
-    user: Pick<User, "_id" | "name" | "email" | "role" | "balance">,
+    user: Pick<User, "_id" | "name" | "email" | "role" | "balance" | "avatar">,
   ) => void;
   clearUser: () => void;
 }

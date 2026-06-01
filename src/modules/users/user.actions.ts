@@ -98,3 +98,23 @@ export async function getUserBalance(userId: string) {
     return { success: false, error: "Помилка при отриманні балансу" };
   }
 }
+export async function updateUserProfile(
+  userId: string,
+  data: { name: string; avatar?: string },
+) {
+  try {
+    await dbConnect();
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: data },
+      { new: true },
+    );
+    if (!updatedUser) {
+      return { success: false, error: "Користувача не знайдено" };
+    }
+    return { success: true, data: JSON.parse(JSON.stringify(updatedUser)) };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Помилка при оновленні профілю" };
+  }
+}
