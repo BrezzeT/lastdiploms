@@ -34,6 +34,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           email: formData.email,
           role: "user",
           balance: 0,
+          avatar: res.data.avatar || "",
         });
         onClose();
       } else {
@@ -51,6 +52,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           email: res.data.email,
           role: res.data.role,
           balance: res.data.balance,
+          avatar: res.data.avatar || "",
         });
         onClose();
       } else {
