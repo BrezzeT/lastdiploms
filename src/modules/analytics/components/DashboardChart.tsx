@@ -27,10 +27,10 @@ export default function DashboardChart({ data }: Props) {
   }, []);
 
   return (
-    <ResponsiveContainer width="100%" height={280}>
+    <ResponsiveContainer width="100%" height={isMobile ? 220 : 280}>
       <BarChart
         data={data}
-        margin={{ top: 4, right: 4, left: isMobile ? -30 : 15, bottom: 0 }}
+        margin={{ top: 4, right: 4, left: isMobile ? -20 : 15, bottom: 0 }}
       >
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
         <XAxis

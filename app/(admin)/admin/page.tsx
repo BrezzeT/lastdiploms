@@ -117,45 +117,42 @@ export default async function AdminDashboard() {
             <p className="text-zinc-600 text-xs italic">Замовлень поки немає</p>
           </div>
         ) : (
-          <div className="overflow-x-auto -mx-1">
-            <div className="min-w-[480px] px-1">
-              <div className="flex flex-col gap-2">
-                {recentOrders.map((order) => (
-                  <div
-                    key={order._id}
-                    className="flex items-center gap-3 sm:gap-4 px-4 py-3 rounded-2xl hover:bg-zinc-900/40 transition-colors group"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-white text-sm font-bold truncate group-hover:text-violet-300 transition-colors">
-                        {order.userName}
-                      </p>
-                    </div>
+          <div className="flex flex-col gap-2">
+            {recentOrders.map((order) => (
+              <div
+                key={order._id}
+                className="flex items-center gap-3 sm:gap-4 px-4 py-3 rounded-2xl hover:bg-zinc-900/40 transition-colors group"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-white text-sm font-bold truncate group-hover:text-violet-300 transition-colors">
+                    {order.userName}
+                  </p>
+                </div>
 
-                    <span
-                      className={`px-2.5 py-1 text-[10px] font-bold rounded-full border shrink-0 ${
-                        order.paymentStatus === "balance"
-                          ? "text-violet-400 bg-violet-500/10 border-violet-500/15"
-                          : "text-zinc-400 bg-zinc-500/10 border-zinc-500/15"
-                      }`}
-                    >
-                      {order.paymentStatus === "balance" ? "Баланс" : "Готівка"}
-                    </span>
+                <span
+                  className={`px-2.5 py-1 text-[10px] font-bold rounded-full border shrink-0 ${
+                    order.paymentStatus === "balance"
+                      ? "text-violet-400 bg-violet-500/10 border-violet-500/15"
+                      : "text-zinc-400 bg-zinc-500/10 border-zinc-500/15"
+                  }`}
+                >
+                  {order.paymentStatus === "balance" ? "Баланс" : "Готівка"}
+                </span>
 
-                    <span
-                      className={`px-2.5 py-1 text-[10px] font-bold rounded-full border shrink-0 ${
-                        statusStyle[order.status] ?? "text-zinc-400 bg-zinc-500/10 border-zinc-500/15"
-                      }`}
-                    >
-                      {statusMap[order.status] ?? order.status}
-                    </span>
+                <span
+                  className={`px-2.5 py-1 text-[10px] font-bold rounded-full border shrink-0 ${
+                    statusStyle[order.status] ??
+                    "text-zinc-400 bg-zinc-500/10 border-zinc-500/15"
+                  }`}
+                >
+                  {statusMap[order.status] ?? order.status}
+                </span>
 
-                    <p className="font-black text-white text-sm shrink-0">
-                      {order.totalAmount.toLocaleString("uk-UA")} ₴
-                    </p>
-                  </div>
-                ))}
+                <p className="font-black text-white text-sm shrink-0 hidden sm:block">
+                  {order.totalAmount.toLocaleString("uk-UA")} ₴
+                </p>
               </div>
-            </div>
+            ))}
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../users/store/useAuthStore";
 import { updateUserProfile } from "@/src/modules/users/user.actions";
-import { Save, Layers } from "lucide-react";
+import { Save } from "lucide-react";
 import { toast } from "sonner";
 import { motion, Variants } from "framer-motion";
 

@@ -69,22 +69,22 @@ export default function AdminProductList({
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`flex items-center justify-between px-4 py-3 rounded-2xl border transition-all cursor-pointer ${
+              className={`flex items-center justify-between gap-2 px-3 sm:px-4 py-3 rounded-2xl border transition-all cursor-pointer min-w-0 ${
                 activeFilter === f.id
                   ? "bg-violet-600/15 text-violet-400 border-violet-500/30 shadow-md shadow-violet-500/5"
                   : "bg-zinc-950/40 border-zinc-800/40 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/40"
               }`}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 <f.icon
-                  className={`w-4 h-4 ${activeFilter === f.id ? "text-violet-400" : f.color}`}
+                  className={`w-4 h-4 shrink-0 ${activeFilter === f.id ? "text-violet-400" : f.color}`}
                 />
-                <span className="text-xs font-bold uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">
                   {f.label}
                 </span>
               </div>
               <span
-                className={`text-[10px] font-black ${activeFilter === f.id ? "text-violet-400/90" : "text-zinc-600"}`}
+                className={`text-[10px] font-black shrink-0 ${activeFilter === f.id ? "text-violet-400/90" : "text-zinc-600"}`}
               >
                 {stats[f.id] ?? 0}
               </span>

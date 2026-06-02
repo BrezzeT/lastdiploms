@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "./ProductCard";
+import CatalogFilters from "./CatalogFilters";
 import { Product as ProductType } from "@/src/modules/layout/shared/types";
 import {
   staggerContainer,
@@ -16,6 +18,13 @@ interface AnimatedProductGridProps {
 export default function AnimationProductGrid({
   products,
 }: AnimatedProductGridProps) {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProducts = useMemo(() => {
+    if (activeFilter === "all") return products;
+    return products.filter((product) => product.category === activeFilter);
+  }, [activeFilter, products]);
+
   return (
     <>
       <motion.div
@@ -38,21 +47,43 @@ export default function AnimationProductGrid({
           </p>
         </div>
         <div className="text-xs font-bold text-zinc-500 uppercase tracking-widest bg-zinc-100 rounded-full px-4 py-2 shrink-0 self-start md:self-auto shadow-xs border border-zinc-200">
-          Знайдено {products.length} товарів
+          Знайдено {filteredProducts.length} товарів
         </div>
       </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={staggerContainer}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-      >
-        {products.map((product) => (
-          <motion.div key={product._id} variants={fadeUpItem}>
-            <ProductCard product={product} isAdmin={false} />
-          </motion.div>
-        ))}
-      </motion.div>
+
+      <CatalogFilters
+        activeFilter={activeFilter}
+        onFilterChange={setActiveFilter}
+      />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeFilter}
+          initial="hidden"
+          animate="show"
+          exit={{ opacity: 0, y: 20 }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+        >
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <motion.div key={product._id} variants={fadeUpItem}>
+                <ProductCard product={product} isAdmin={false} />
+              </motion.div>
+            ))
+          ) : (
+            <motion.div
+              className="col-span-full text-center py-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <p className="text-zinc-400 text-base font-medium">
+                Товарів у цій категорії поки немає
+              </p>
+            </motion.div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 }
