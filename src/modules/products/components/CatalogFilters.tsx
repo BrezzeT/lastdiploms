@@ -28,8 +28,8 @@ export default function CatalogFilters({
   ];
 
   return (
-    <div className="flex justify-center mt-8 mb-6">
-      <div className="flex items-center flex-wrap gap-1 p-1.5 rounded-2xl bg-zinc-100/70 border border-zinc-200/80">
+    <div className="flex justify-center sm:justify-start mt-8 mb-6 max-w-full ">
+      <div className="flex items-center gap-1 p-1.5 rounded-2xl bg-zinc-100/70 border border-zinc-200/80 overflow-x-auto max-w-full scrollbar-hide">
         {filters.map(({ id, label, Icon, accent }) => {
           const isActive = activeFilter === id;
 
