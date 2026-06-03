@@ -10,6 +10,7 @@ import {
   fadeUpItem,
 } from "@/src/modules/layout/shared/animations";
 import { Sparkles } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 interface AnimatedProductGridProps {
   products: ProductType[];
@@ -18,13 +19,13 @@ interface AnimatedProductGridProps {
 export default function AnimationProductGrid({
   products,
 }: AnimatedProductGridProps) {
-  const [activeFilter, setActiveFilter] = useState("all");
-
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const [activeFilter, setActiveFilter] = useState(categoryParam || "all");
   const filteredProducts = useMemo(() => {
     if (activeFilter === "all") return products;
     return products.filter((product) => product.category === activeFilter);
   }, [activeFilter, products]);
-
   return (
     <>
       <motion.div
