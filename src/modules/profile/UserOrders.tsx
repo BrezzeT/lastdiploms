@@ -4,7 +4,7 @@ import {
   ORDER_STATUS_LABELS,
   ORDER_STATUS_STYLES_STORE,
   PAYMENT_LABELS,
-} from "../layout/shared/constants";
+} from "../shared/constants";
 import { Order, OrderStatus } from "../shared/types";
 import {
   Phone,

@@ -299,7 +299,7 @@ export default function AdminOrderList() {
 
                   <Link
                     href={`/admin/orders/${order._id}`}
-                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-[10px] font-black uppercase tracking-widest hover:shadow-lg hover:shadow-violet-600/20 active:scale-95 transition-all shrink-0"
+                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-linear-to-r from-violet-600 to-indigo-600 text-white text-[10px] font-black uppercase tracking-widest hover:shadow-lg hover:shadow-violet-600/20 active:scale-95 transition-all shrink-0"
                   >
                     Деталі <ArrowRight className="w-3 h-3" />
                   </Link>

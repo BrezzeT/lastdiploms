@@ -8,7 +8,7 @@ import { ShoppingBag } from "lucide-react";
 import {
   ORDER_STATUS_LABELS,
   ORDER_STATUS_STYLES_STORE,
-} from "../layout/shared/constants";
+} from "../shared/constants";
 import UserOrders from "./UserOrders";
 import { motion, Variants } from "framer-motion";
 

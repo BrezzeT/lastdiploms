@@ -3,10 +3,7 @@ import { useState } from "react";
 import { ChevronLeft, Save, Image as ImageIcon, Plus } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  PRODUCT_CATEGORIES,
-  PRODUCT_COLORS,
-} from "@/src/modules/layout/shared/constants";
+import { PRODUCT_CATEGORIES, PRODUCT_COLORS } from "../../shared/constants";
 import { createProduct } from "@/src/modules/products/product.actions";
 
 export default function NewProductPage() {
