@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../users/store/useAuthStore";
 import { getUserOrders } from "../orders/order.actions";
-import { Order as OrderType, OrderStatus } from "../layout/shared/types";
+import { Order as OrderType, OrderStatus } from "../shared/types";
 import { ShoppingBag } from "lucide-react";
 import {
   ORDER_STATUS_LABELS,

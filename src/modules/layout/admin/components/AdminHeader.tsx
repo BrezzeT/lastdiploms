@@ -1,6 +1,6 @@
 "use client";
 import { Menu, Calendar } from "lucide-react";
-import { useAdminStore } from "@/src/modules/layout/shared/store/useAdminStore";
+import { useAdminStore } from "@/src/modules/shared/store/useAdminStore";
 import { useMemo } from "react";
 
 interface AdminHeaderProps {

@@ -4,11 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Sparkles, ArrowRight } from "lucide-react";
 import ProductCard from "@/src/modules/products/components/ProductCard";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
-import {
-  staggerContainer,
-  fadeUpItem,
-} from "@/src/modules/layout/shared/animations";
+import { Product as ProductType } from "@/src/modules/shared/types";
+import { staggerContainer, fadeUpItem } from "@/src/modules/shared/animations";
 
 interface FeaturedProductsProps {
   products: ProductType[];

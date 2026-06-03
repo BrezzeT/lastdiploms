@@ -19,7 +19,7 @@ import {
   getOrders,
   updateOrderStatus,
 } from "@/src/modules/orders/order.actions";
-import { Order as OrderType } from "@/src/modules/layout/shared/types";
+import { Order as OrderType } from "@/src/modules/shared/types";
 import Link from "next/link";
 
 export default function AdminOrderList() {

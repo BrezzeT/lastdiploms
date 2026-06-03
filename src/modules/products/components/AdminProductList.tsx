@@ -4,8 +4,8 @@ import { useState, useMemo } from "react";
 import { Search, Plus } from "lucide-react";
 import Link from "next/link";
 import ProductCard from "@/src/modules/products/components/ProductCard";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
-import { ADMIN_PRODUCT_FILTERS } from "../../layout/shared/constants";
+import { Product as ProductType } from "@/src/modules/shared/types";
+import { ADMIN_PRODUCT_FILTERS } from "../../shared/constants";
 
 export default function AdminProductList({
   initialProducts,

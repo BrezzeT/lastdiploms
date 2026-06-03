@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { User } from "@/src/modules/layout/shared/types";
+import { User } from "@/src/modules/shared/types";
 
 interface AuthState {
   user: Pick<

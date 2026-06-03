@@ -4,11 +4,8 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "./ProductCard";
 import CatalogFilters from "./CatalogFilters";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
-import {
-  staggerContainer,
-  fadeUpItem,
-} from "@/src/modules/layout/shared/animations";
+import { Product as ProductType } from "@/src/modules/shared/types";
+import { staggerContainer, fadeUpItem } from "@/src/modules/shared/animations";
 import { Sparkles } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 

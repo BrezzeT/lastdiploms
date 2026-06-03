@@ -1,12 +1,12 @@
 "use server";
 
-import dbConnect from "@/src/modules/layout/shared/db";
+import dbConnect from "@/src/modules/shared/db";
 import Order from "@/src/modules/orders/order.model";
 import User from "@/src/modules/users/user.model";
 import Product from "@/src/modules/products/product.model";
 import { revalidatePath } from "next/cache";
-import { Order as OrderType } from "@/src/modules/layout/shared/types";
-import { sendTelegramMessage } from "../layout/shared/telegram/telegram";
+import { Order as OrderType } from "@/src/modules/shared/types";
+import { sendTelegramMessage } from "../shared/telegram/telegram";
 
 export async function createOrder(formData: OrderType) {
   try {

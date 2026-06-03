@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogOut, Zap } from "lucide-react";
-import { ADMIN_MENU_ITEMS } from "@/src/modules/layout/shared/constants";
-import { useAdminStore } from "@/src/modules/layout/shared/store/useAdminStore";
+import { ADMIN_MENU_ITEMS } from "@/src/modules/shared/constants";
+import { useAdminStore } from "@/src/modules/shared/store/useAdminStore";
 
 export default function AdminSidebar() {
   const pathname = usePathname();

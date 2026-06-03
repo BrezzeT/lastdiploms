@@ -15,7 +15,7 @@ import {
   getAllUsers,
   updateUserBalance,
 } from "@/src/modules/users/user.actions";
-import { User } from "@/src/modules/layout/shared/types";
+import { User } from "@/src/modules/shared/types";
 
 export default function AdminUserList() {
   const [search, setSearch] = useState("");

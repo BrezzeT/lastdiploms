@@ -1,6 +1,6 @@
 "use client";
 
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { Product as ProductType } from "@/src/modules/shared/types";
 import {
   Edit2,
   Trash2,
@@ -10,13 +10,13 @@ import {
   Plus,
 } from "lucide-react";
 import Link from "next/link";
-import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
+import { useCartStore } from "@/src/modules/shared/store/useCartStore";
 import { useState } from "react";
 import { deleteProduct } from "@/src/modules/products/product.actions";
 import EditProductModal from "./EditProductModal";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { cardHoverEffect } from "../../layout/shared/animations";
+import { cardHoverEffect } from "../../shared/animations";
 
 interface ProductCardProps {
   product: ProductType;

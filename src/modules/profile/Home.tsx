@@ -5,8 +5,8 @@ import { useAuthStore } from "../users/store/useAuthStore";
 import { User2, ArrowLeft } from "lucide-react";
 import ProfileOrders from "./ProfileOrders";
 import ProfileSettings from "./ProfileSettings";
-import { PROFILE_MENU_ITEMS } from "../layout/shared/constants";
-import { Order as OrderType } from "../layout/shared/types";
+import { PROFILE_MENU_ITEMS } from "../shared/constants";
+import { Order as OrderType } from "@/src/modules/shared/types";
 import { motion } from "framer-motion";
 
 export default function ProfileHome() {

@@ -1,8 +1,8 @@
 "use server";
 
-import dbConnect from "@/src/modules/layout/shared/db";
+import dbConnect from "@/src/modules/shared/db";
 import Product from "@/src/modules/products/product.model";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { Product as ProductType } from "@/src/modules/shared/types";
 import { revalidatePath } from "next/cache";
 
 export async function createProduct(formData: ProductType) {
@@ -103,9 +103,9 @@ export async function getCategoryCounts() {
   try {
     await dbConnect();
     const counts = await Product.aggregate([
-      { $group: { _id: "$category", count: { $sum: 1 } } }
+      { $group: { _id: "$category", count: { $sum: 1 } } },
     ]);
-    
+
     const countMap: Record<string, number> = {};
     counts.forEach((item) => {
       if (item._id) {
@@ -119,4 +119,3 @@ export async function getCategoryCounts() {
     return { success: false, data: {} };
   }
 }
-

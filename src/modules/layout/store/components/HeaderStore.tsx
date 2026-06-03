@@ -15,7 +15,7 @@ import Link from "next/link";
 import AuthModal from "@/src/modules/users/components/AuthModal";
 import CartModal from "@/src/modules/layout/store/components/CartDraw";
 import { useAuthStore } from "@/src/modules/users/store/useAuthStore";
-import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
+import { useCartStore } from "@/src/modules/shared/store/useCartStore";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 

@@ -1,5 +1,5 @@
 import { Schema, model, models, Model } from "mongoose";
-import { Order as OrderType } from "@/src/modules/layout/shared/types";
+import { Order as OrderType } from "@/src/modules/shared/types";
 
 const OrderItemSchema = new Schema({
   productId: {

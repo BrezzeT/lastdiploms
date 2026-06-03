@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { X, Mail, Lock, User } from "lucide-react";
 import { registerUser, loginUser } from "@/src/modules/users/user.actions";
-import { User as UserType } from "@/src/modules/layout/shared/types";
+import { User as UserType } from "@/src/modules/shared/types";
 import { useAuthStore } from "@/src/modules/users/store/useAuthStore";
 
 interface AuthModalProps {

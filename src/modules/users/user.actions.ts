@@ -1,9 +1,9 @@
 "use server";
 
-import dbConnect from "@/src/modules/layout/shared/db";
+import dbConnect from "@/src/modules/shared/db";
 import User from "@/src/modules/users/user.model";
 import bcrypt from "bcryptjs";
-import { User as UserType } from "@/src/modules/layout/shared/types";
+import { User as UserType } from "@/src/modules/shared/types";
 import { revalidatePath } from "next/cache";
 
 export async function registerUser(formData: UserType) {

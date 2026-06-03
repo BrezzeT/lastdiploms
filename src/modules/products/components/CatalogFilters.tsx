@@ -1,10 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  PRODUCT_CATEGORIES,
-  CATEGORY_STYLES,
-} from "../../layout/shared/constants";
+import { PRODUCT_CATEGORIES, CATEGORY_STYLES } from "../../shared/constants";
 import { LayoutGrid } from "lucide-react";
 
 interface CatalogFilterProps {

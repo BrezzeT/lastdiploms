@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { X, Save } from "lucide-react";
 import { updateProduct } from "@/src/modules/products/product.actions";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { Product as ProductType } from "@/src/modules/shared/types";
 
 interface EditProductModalProps {
   product: ProductType;

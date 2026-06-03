@@ -5,7 +5,7 @@ import {
   getCategoryCounts,
   getProducts,
 } from "@/src/modules/products/product.actions";
-import { Product } from "@/src/modules/layout/shared/types";
+import { Product } from "@/src/modules/shared/types";
 
 export default async function StoreFront() {
   const countsResponse = await getCategoryCounts();

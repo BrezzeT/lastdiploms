@@ -5,7 +5,7 @@ import {
   ORDER_STATUS_STYLES_STORE,
   PAYMENT_LABELS,
 } from "../layout/shared/constants";
-import { Order, OrderStatus } from "../layout/shared/types";
+import { Order, OrderStatus } from "../shared/types";
 import {
   Phone,
   MapPin,

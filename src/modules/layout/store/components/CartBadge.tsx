@@ -1,6 +1,6 @@
 "use client";
 
-import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
+import { useCartStore } from "@/src/modules/shared/store/useCartStore";
 
 export const CartBadge = () => {
   const { getTotalItems } = useCartStore();

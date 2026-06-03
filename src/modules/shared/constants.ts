@@ -162,3 +162,10 @@ export const PAYMENT_LABELS = {
   balance: "Баланс",
   cash: "Готівка",
 } as const;
+export const STATUS_MAP: Record<string, string> = {
+  pending: "Очікується",
+  paid: "Оплачено",
+  shipped: "Відправлено",
+  delivered: "Доставлено",
+  cancelled: "Скасовано",
+};

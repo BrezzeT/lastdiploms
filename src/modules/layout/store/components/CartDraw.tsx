@@ -10,7 +10,7 @@ import {
   ShoppingBag,
   ArrowRight,
 } from "lucide-react";
-import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
+import { useCartStore } from "@/src/modules/shared/store/useCartStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -80,6 +80,8 @@ export default function CartModal() {
             </div>
             <button
               onClick={closeCart}
+              type="button"
+              aria-label="Закрити кошик"
               className="group p-2.5 bg-zinc-50 hover:bg-zinc-100 rounded-full transition-all active:scale-95 cursor-pointer border border-zinc-200/50"
             >
               <X className="w-4 h-4 text-zinc-500 group-hover:text-zinc-900 transition-colors" />
@@ -125,6 +127,8 @@ export default function CartModal() {
                           {item.name}
                         </h3>
                         <button
+                          aria-label="Видалити товар з кошика"
+                          type="button"
                           onClick={() => removeItem(item.productId)}
                           className="p-1.5 text-zinc-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all cursor-pointer opacity-0 group-hover:opacity-100 -mr-1.5 -mt-1.5 shrink-0"
                         >
@@ -142,6 +146,7 @@ export default function CartModal() {
                             }`}
                           >
                             <button
+                              aria-label="Зменшити кількість товару"
                               type="button"
                               onClick={() =>
                                 updateQuantity(
@@ -163,6 +168,7 @@ export default function CartModal() {
                               {item.quantity}
                             </span>
                             <button
+                              aria-label="Збільшити кількість товару"
                               type="button"
                               onClick={() =>
                                 updateQuantity(

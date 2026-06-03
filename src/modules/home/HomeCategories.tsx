@@ -1,11 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  PRODUCT_CATEGORIES,
-  CATEGORY_STYLES,
-} from "../layout/shared/constants";
-
+import { PRODUCT_CATEGORIES, CATEGORY_STYLES } from "../shared/constants";
 import { Layers, ArrowRight } from "lucide-react";
 
 type Props = {

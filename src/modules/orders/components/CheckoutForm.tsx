@@ -10,12 +10,12 @@ import {
   Loader2,
   Image as ImageIcon,
 } from "lucide-react";
-import { useCartStore } from "@/src/modules/layout/shared/store/useCartStore";
+import { useCartStore } from "@/src/modules/shared/store/useCartStore";
 import { useAuthStore } from "@/src/modules/users/store/useAuthStore";
 import { createOrder } from "@/src/modules/orders/order.actions";
 import { getUserBalance } from "@/src/modules/users/user.actions";
 import { useRouter } from "next/navigation";
-import type { Order as OrderType } from "@/src/modules/layout/shared/types";
+import type { Order as OrderType } from "@/src/modules/shared/types";
 import AuthModal from "@/src/modules/users/components/AuthModal";
 import { toast } from "sonner";
 

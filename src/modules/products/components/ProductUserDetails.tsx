@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react";
-import { Product } from "../../layout/shared/types";
+import { Product } from "../../shared/types";
 import Link from "next/link";
 
 interface ProductDetailsProps {

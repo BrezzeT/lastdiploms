@@ -1,6 +1,6 @@
 "use server";
 
-import dbConnect from "@/src/modules/layout/shared/db";
+import dbConnect from "@/src/modules/shared/db";
 import Order from "@/src/modules/orders/order.model";
 import User from "@/src/modules/users/user.model";
 
@@ -8,6 +8,7 @@ export interface SalesDay {
   date: string;
   revenue: number;
   ordersCount: number;
+  products?: string[];
 }
 
 export async function getDashStats() {
@@ -83,5 +84,63 @@ export async function getDashStats() {
       success: false as const,
       error: "Не вдалося завантажити аналітику",
     };
+  }
+}
+export async function getAnalyticsPageStats() {
+  try {
+    await dbConnect();
+    const validOrders = await Order.find({
+      status: { $ne: "cancelled" },
+    });
+    const now = new Date();
+    const monthlyTrend: SalesDay[] = Array.from({ length: 30 }, (_, i) => {
+      const dayStart = new Date(now);
+      dayStart.setDate(now.getDate() - (29 - i));
+      dayStart.setHours(0, 0, 0, 0);
+      const dayEnd = new Date(dayStart);
+      dayEnd.setDate(dayStart.getDate() + 1);
+      const dayOrders = validOrders.filter((o) => {
+        const d = new Date(o.createdAt as Date);
+        return d >= dayStart && d < dayEnd;
+      });
+      const productNames = dayOrders
+        .flatMap((o) =>
+          (o.items as { name: string }[]).map((item) => item.name),
+        )
+        .filter((name, idx, arr) => arr.indexOf(name) === idx)
+        .slice(0, 5);
+
+      return {
+        date: dayStart.toLocaleDateString("uk-UA", {
+          day: "2-digit",
+          month: "2-digit",
+        }),
+        revenue: dayOrders.reduce((s, o) => s + (o.totalAmount as number), 0),
+        ordersCount: dayOrders.length,
+        products: productNames,
+      };
+    });
+    const allOrder = await Order.find({});
+    const statusCounts = allOrder.reduce(
+      (acc, order) => {
+        const status = order.status as string;
+        acc[status] = (acc[status] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
+    const orderStatusDate = Object.entries(statusCounts).map(
+      ([name, value]) => ({
+        name,
+        value,
+      }),
+    );
+    return {
+      success: true as const,
+      data: { monthlyTrend, orderStatusDate },
+    };
+  } catch (error) {
+    console.error("Помилка аналітики:", error);
+    return { success: false as const, error: "Помилка завантаження" };
   }
 }

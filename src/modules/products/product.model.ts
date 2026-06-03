@@ -1,5 +1,5 @@
 import { Schema, model, models, Model } from "mongoose";
-import { Product as ProductType } from "@/src/modules/layout/shared/types";
+import { Product as ProductType } from "@/src/modules/shared/types";
 
 const ProductSchema = new Schema<ProductType>(
   {
