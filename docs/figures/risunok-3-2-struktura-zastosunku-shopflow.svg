@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+  <text x="450" y="26" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1e293b">
+    030;L=0 AB@C:BC@0 A8AB5<8 «ShopFlow»
+  </text>
+
+  <!-- Root -->
+  <rect x="340" y="45" width="220" height="36" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" font-size="12" font-weight="700" font-family="Segoe UI, Arial" fill="#5b21b6">ShopFlow (Next.js)</text>
+
+  <line x1="450" y1="81" x2="450" y2="100" stroke="#64748b" stroke-width="1.5"/>
+  <line x1="150" y1="100" x2="750" y2="100" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- app -->
+  <line x1="150" y1="100" x2="150" y2="115" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="50" y="115" width="200" height="200" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="150" y="138" text-anchor="middle" font-size="11" font-weight="700" font-family="Segoe UI, Arial" fill="#1d4ed8">app/  <0@H@CB8</text>
+  <rect x="65" y="150" width="170" height="24" rx="4" fill="#fff" stroke="#93c5fd"/>
+  <text x="150" y="166" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#1e40af">layout.tsx, globals.css</text>
+  <rect x="65" y="182" width="170" height="24" rx="4" fill="#fff" stroke="#93c5fd"/>
+  <text x="150" y="198" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#1e40af">(store)/  2VB@8=0</text>
+  <rect x="75" y="212" width="150" height="88" rx="4" fill="#f8fafc" stroke="#bfdbfe"/>
+  <text x="150" y="230" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#334155">/, /catalog, /checkout</text>
+  <text x="150" y="246" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#334155">/profile, /orders</text>
+  <rect x="65" y="308" width="170" height="24" rx="4" fill="#fff" stroke="#93c5fd"/>
+  <text x="150" y="324" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#1e40af">(admin)/admin/...</text>
+
+  <!-- src/modules -->
+  <line x1="450" y1="100" x2="450" y2="115" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="300" y="115" width="300" height="280" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="450" y="138" text-anchor="middle" font-size="11" font-weight="700" font-family="Segoe UI, Arial" fill="#5b21b6">src/modules/  ;>3V:0</text>
+
+  <rect x="315" y="150" width="125" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="377" y="165" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">products</text>
+  <rect x="450" y="150" width="125" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="512" y="165" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">orders</text>
+  <rect x="315" y="178" width="125" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="377" y="193" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">users</text>
+  <rect x="450" y="178" width="125" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="512" y="193" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">profile</text>
+  <rect x="315" y="206" width="125" height="22" rx="4" fill="#ede9fe" stroke="#a78bfa"/>
+  <text x="377" y="221" text-anchor="middle" font-size="8" font-weight="600" font-family="Segoe UI, Arial">analytics</text>
+  <rect x="450" y="206" width="125" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="512" y="221" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">home</text>
+  <rect x="315" y="234" width="260" height="22" rx="4" fill="#fff" stroke="#c4b5fd"/>
+  <text x="445" y="249" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">layout (Header, Sidebar, Cart)</text>
+  <rect x="315" y="262" width="260" height="50" rx="4" fill="#fafafa" stroke="#ddd6fe"/>
+  <text x="445" y="280" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#64748b">shared: db, types, constants</text>
+  <text x="445" y="296" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#64748b">store (cart), telegram</text>
+  <rect x="315" y="320" width="260" height="22" rx="4" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="445" y="335" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#047857">*.actions.ts  Server Actions</text>
+  <rect x="315" y="348" width="260" height="22" rx="4" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="445" y="363" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#c2410c">*.model.ts  Mongoose</text>
+
+  <!-- public + config -->
+  <line x1="750" y1="100" x2="750" y2="115" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="650" y="115" width="200" height="120" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="750" y="138" text-anchor="middle" font-size="11" font-weight="700" font-family="Segoe UI, Arial" fill="#15803d">public/ + config</text>
+  <rect x="665" y="150" width="170" height="22" rx="4" fill="#fff" stroke="#86efac"/>
+  <text x="750" y="165" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">manifest.json (PWA)</text>
+  <rect x="665" y="178" width="170" height="22" rx="4" fill="#fff" stroke="#86efac"/>
+  <text x="750" y="193" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">next.config.ts</text>
+  <rect x="665" y="206" width="170" height="22" rx="4" fill="#fff" stroke="#86efac"/>
+  <text x="750" y="221" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial">.env  MongoDB, Telegram</text>
+
+  <!-- External -->
+  <line x1="450" y1="395" x2="450" y2="415" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="280" y="415" width="340" height="85" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+  <text x="450" y="440" text-anchor="middle" font-size="11" font-weight="700" font-family="Segoe UI, Arial" fill="#c2410c">>2=VH=V A5@2VA8</text>
+  <rect x="300" y="452" width="140" height="32" rx="6" fill="#fff" stroke="#fdba74"/>
+  <text x="370" y="472" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial">MongoDB</text>
+  <rect x="460" y="452" width="140" height="32" rx="6" fill="#fff" stroke="#7dd3fc"/>
+  <text x="530" y="472" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial">Telegram API</text>
+
+  <text x="450" y="505" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#94a3b8">;VT=B: React + Zustand · !B8;V: Tailwind CSS</text>
+</svg>

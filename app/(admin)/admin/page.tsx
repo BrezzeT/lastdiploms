@@ -1,6 +1,7 @@
 import { getDashStats } from "@/src/modules/analytics/analytics.actions";
 import DashboardChart from "@/src/modules/analytics/components/DashboardChart";
 import { DollarSign, ShoppingCart, Users, TrendingUp } from "lucide-react";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -32,6 +33,7 @@ export default async function AdminDashboard() {
       color: "text-violet-400",
       bg: "bg-violet-500/10",
       border: "border-violet-500/10",
+      href: "/admin/orders",
     },
     {
       label: "Замовлення",
@@ -40,6 +42,7 @@ export default async function AdminDashboard() {
       color: "text-pink-400",
       bg: "bg-pink-500/10",
       border: "border-pink-500/10",
+      href: "/admin/orders",
     },
     {
       label: "Клієнти",
@@ -48,6 +51,7 @@ export default async function AdminDashboard() {
       color: "text-emerald-400",
       bg: "bg-emerald-500/10",
       border: "border-emerald-500/10",
+      href: "/admin/users",
     },
     {
       label: "Середній чек",
@@ -56,6 +60,7 @@ export default async function AdminDashboard() {
       color: "text-blue-400",
       bg: "bg-blue-500/10",
       border: "border-blue-500/10",
+      href: "/admin/analytics",
     },
   ];
 
@@ -79,7 +84,8 @@ export default async function AdminDashboard() {
     <div className="space-y-4 pb-10">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {stats.map((s) => (
-          <div
+          <Link
+            href={s.href}
             key={s.label}
             className="bg-[#0b0c10]/40 border border-zinc-800/40 rounded-3xl p-4 sm:p-5 hover:border-violet-500/20 hover:bg-[#0b0c10]/60 transition-all duration-300 group"
           >
@@ -96,7 +102,7 @@ export default async function AdminDashboard() {
             <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
               {s.value}
             </span>
-          </div>
+          </Link>
         ))}
       </div>
 

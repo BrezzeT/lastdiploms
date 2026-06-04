@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420">
+  <text x="440" y="24" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1e293b">
+    !B@C:BC@0 V=B5@D59AC «ShopFlow»
+  </text>
+
+  <!-- Store -->
+  <rect x="30" y="45" width="400" height="350" rx="10" fill="#fafafa" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="230" y="72" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#5b21b6">;VT=BAL:0 2VB@8=0 (A2VB;0 B5<0)</text>
+
+  <rect x="55" y="90" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="132" y="112" text-anchor="middle" font-size="10" font-family="Segoe UI, Arial" fill="#4c1d95">>;>2=0 /</text>
+
+  <rect x="225" y="90" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="302" y="112" text-anchor="middle" font-size="10" font-family="Segoe UI, Arial" fill="#4c1d95">0B0;>3</text>
+
+  <rect x="55" y="140" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="132" y="162" text-anchor="middle" font-size="10" font-family="Segoe UI, Arial" fill="#4c1d95">0@B:0 B>20@C</text>
+
+  <rect x="225" y="140" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="302" y="162" text-anchor="middle" font-size="10" font-family="Segoe UI, Arial" fill="#4c1d95">>H8: (<>40;L)</text>
+
+  <rect x="140" y="190" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="217" y="212" text-anchor="middle" font-size="10" font-family="Segoe UI, Arial" fill="#4c1d95">D>@<;5==O</text>
+
+  <rect x="55" y="250" width="325" height="50" rx="6" fill="#f5f3ff" stroke="#a78bfa"/>
+  <text x="217" y="272" text-anchor="middle" font-size="10" font-weight="600" font-family="Segoe UI, Arial" fill="#5b21b6">A>18AB89 :01V=5B /profile</text>
+  <text x="217" y="288" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#7c3aed">>W 70<>2;5==O · 0;0HBC20==O</text>
+
+  <rect x="55" y="320" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="132" y="342" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#4c1d95">#A?VE 70<>2;5==O</text>
+
+  <rect x="225" y="320" width="155" height="36" rx="6" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="302" y="342" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#4c1d95">>1. ?0=5;L 2=87C</text>
+
+  <!-- Admin -->
+  <rect x="450" y="45" width="400" height="350" rx="10" fill="#0b0c10" stroke="#52525b" stroke-width="2"/>
+  <text x="650" y="72" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#e4e4e7">4<V=-?0=5;L (B5<=0 B5<0)</text>
+
+  <rect x="475" y="95" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="560" y="115" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">0H1>@4 + 3@0DV:</text>
+
+  <rect x="660" y="95" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="745" y="115" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">">20@8 / =>289 B>20@</text>
+
+  <rect x="475" y="140" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="560" y="160" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">0<>2;5==O</text>
+
+  <rect x="660" y="140" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="745" y="160" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">>@8ABC20GV</text>
+
+  <rect x="475" y="185" width="355" height="40" rx="6" fill="#2e1065" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="652" y="205" text-anchor="middle" font-size="10" font-weight="600" font-family="Segoe UI, Arial" fill="#ddd6fe">=0;VB8:0 (Recharts)</text>
+  <text x="652" y="218" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#a78bfa">28@CG:0 · AB0BCA8 70<>2;5=L</text>
+
+  <rect x="475" y="240" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="560" y="260" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">0;0HBC20==O</text>
+
+  <rect x="660" y="240" width="170" height="32" rx="6" fill="#18181b" stroke="#71717a"/>
+  <text x="745" y="260" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#fafafa">VG=5 <5=N</text>
+
+  <text x="650" y="310" text-anchor="middle" font-size="8" font-family="Segoe UI, Arial" fill="#71717a">Header + Sidebar · 040?B82 =0 <>1V;L=8E</text>
+
+  <!-- Shared footer -->
+  <rect x="200" y="385" width="480" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="440" y="403" text-anchor="middle" font-size="9" font-family="Segoe UI, Arial" fill="#475569">React · Tailwind CSS · <>40;L=V 2V:=0 (2EV4, :>H8:)</text>
+</svg>
