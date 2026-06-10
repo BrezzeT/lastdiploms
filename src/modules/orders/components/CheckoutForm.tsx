@@ -206,26 +206,24 @@ export default function CheckoutForm() {
                 >
                   <Wallet className="w-5 h-5 shrink-0" />
                   <div className="text-left">
-                    <div>
-                      <div className="text-sm font-bold tracking-tight">
-                        Баланс
-                      </div>
-                      <div className="text-[10px] opacity-60 mt-0.5">
-                        ₴{user?.balance || 0}
-                      </div>
+                    <div className="text-sm font-bold tracking-tight">
+                      Баланс
+                    </div>
+                    <div className="text-[10px] opacity-60 mt-0.5">
+                      ₴{user?.balance || 0}
                     </div>
                   </div>
                 </button>
               ) : (
-                <div className="p-5 rounded-2xl border transition-all flex items-center justify-center gap-3 bg-zinc-50 border-zinc-200 text-zinc-400 hover:bg-zinc-100/50 hover:border-zinc-300 relative">
-                  <div className="absolute w-32 h-32 opacity-0 blur-4xl" />
+                <div className="relative flex">
                   <button
                     onClick={() => setIsAuthModal(true)}
                     type="button"
-                    className="text-xs font-bold text-zinc-500 hover:text-zinc-800 cursor-pointer text-center leading-normal"
+                    className="w-full p-5 rounded-2xl border transition-all flex items-center justify-center bg-zinc-50 border-zinc-200 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100/50 hover:border-zinc-300 text-xs font-bold cursor-pointer text-center"
                   >
                     Увійдіть, щоб скористатися балансом
                   </button>
+
                   {isAuthModal && (
                     <AuthModal
                       isOpen={isAuthModal}
