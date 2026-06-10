@@ -12,6 +12,7 @@ export async function createProduct(formData: ProductType) {
     const newProduct = await Product.create(formData);
     revalidatePath("/admin/products");
     revalidatePath("/catalog");
+    revalidatePath("/");
     return {
       success: true,
       data: JSON.parse(JSON.stringify(newProduct)),
