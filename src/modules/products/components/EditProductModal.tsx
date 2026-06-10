@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { X, Save } from "lucide-react";
+import { X, Save, Sparkles, Loader2 } from "lucide-react";
 import { updateProduct } from "@/src/modules/products/product.actions";
 import { Product as ProductType } from "@/src/modules/shared/types";
+import { generateDescription } from "../product.gemini.actions";
 
 interface EditProductModalProps {
   product: ProductType;
@@ -21,8 +22,10 @@ export default function EditProductModal({
     price: product.price,
     stock: product.stock,
     isFeatured: product.isFeatured || false,
+    description: product.description || "",
   });
   const [isSaving, setIsSaving] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,11 +39,31 @@ export default function EditProductModal({
     setIsSaving(false);
   };
 
+  const handleGenerate = async () => {
+    setIsGenerating(true);
+    try {
+      const result = await generateDescription(
+        editForm.name,
+        product.category,
+        product.brand,
+      );
+      if (result.success && result.data) {
+        setEditForm({ ...editForm, description: result.data });
+      } else {
+        alert(result.error || "Помилка генерації");
+      }
+    } catch {
+      alert("Не вдалося підключитися до сервісу генерації");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div className="w-full max-w-lg bg-[#0b0c10] border border-zinc-800/80 rounded-3xl p-6 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+      <div className="w-full max-w-lg bg-[#0b0c10] border border-zinc-800/80 rounded-3xl p-6 space-y-5 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-white">Редагування товару</h3>
           <button
@@ -102,6 +125,40 @@ export default function EditProductModal({
                 className="w-full bg-zinc-950/60 border border-zinc-800 focus:border-violet-500/50 focus:bg-zinc-950 rounded-2xl py-2.5 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all"
               />
             </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between pl-1">
+              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
+                Опис товару
+              </label>
+              <button
+                type="button"
+                onClick={handleGenerate}
+                disabled={isGenerating}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-violet-600/10 border border-violet-500/20 text-violet-400 hover:bg-violet-600 hover:text-white disabled:opacity-50 text-[10px] font-bold transition-all cursor-pointer active:scale-95"
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                    Генерується...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-3 h-3" />
+                    Згенерувати ШІ
+                  </>
+                )}
+              </button>
+            </div>
+            <textarea
+              value={editForm.description}
+              onChange={(e) =>
+                setEditForm({ ...editForm, description: e.target.value })
+              }
+              placeholder="Опис товару..."
+              className="w-full bg-zinc-950/60 border border-zinc-800 focus:border-violet-500/50 focus:bg-zinc-950 rounded-2xl py-2.5 px-4 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500/10 transition-all min-h-28 resize-y leading-relaxed"
+            />
           </div>
 
           <div className="flex items-center gap-3 bg-zinc-950/60 border border-zinc-800 p-4 rounded-2xl">

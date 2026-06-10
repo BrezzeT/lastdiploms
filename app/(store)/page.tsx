@@ -6,6 +6,7 @@ import {
   getProducts,
 } from "@/src/modules/products/product.actions";
 import { Product } from "@/src/modules/shared/types";
+import NewProducts from "@/src/modules/home/NewProducts";
 
 export default async function StoreFront() {
   const countsResponse = await getCategoryCounts();
@@ -16,6 +17,12 @@ export default async function StoreFront() {
     ? (productsResponse.data as Product[])
     : [];
   const featuredProducts = allProducts.filter((product) => product.isFeatured);
+  const newFilter = [...allProducts]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime(),
+    )
+    .slice(0, 4);
 
   return (
     <div className="space-y-8 md:space-y-16">
@@ -23,6 +30,7 @@ export default async function StoreFront() {
       <div className="">
         <HomeCategories counts={counts} />
         <FeaturedProducts products={featuredProducts} />
+        <NewProducts products={newFilter} />
       </div>
     </div>
   );

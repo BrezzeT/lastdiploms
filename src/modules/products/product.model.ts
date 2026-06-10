@@ -41,6 +41,10 @@ const ProductSchema = new Schema<ProductType>(
       type: Boolean,
       default: false,
     },
+    description: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

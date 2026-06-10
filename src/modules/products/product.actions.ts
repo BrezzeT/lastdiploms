@@ -25,7 +25,7 @@ export async function createProduct(formData: ProductType) {
 export async function getProducts() {
   try {
     await dbConnect();
-    const product = await Product.find({}).sort({ createdAt: -1 });
+    const product = await Product.find({}).sort({ createdAt: -1 }).lean();
     return {
       success: true,
       data: JSON.parse(JSON.stringify(product)),
@@ -85,7 +85,7 @@ export async function deleteProduct(id: string) {
 export async function getProductById(id: string) {
   try {
     await dbConnect();
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).lean();
     if (!product) {
       return { success: false, error: "Товар не знайдено" };
     }

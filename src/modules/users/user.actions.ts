@@ -13,7 +13,7 @@ export async function registerUser(formData: UserType) {
 
     if (!password) return { success: false, error: "Пароль обов'язковий" };
 
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email }).lean();
     if (userExists) {
       return { success: false, error: "Користувач з таким email вже існує" };
     }
@@ -40,7 +40,7 @@ export async function loginUser(formData: { email: string; password: string }) {
     await dbConnect();
     const { email, password } = formData;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).lean();
     if (!user || !user.password) {
       return { success: false, error: "Користувача з таким email не знайдено" };
     }
@@ -60,7 +60,7 @@ export async function loginUser(formData: { email: string; password: string }) {
 export async function getAllUsers() {
   try {
     await dbConnect();
-    const users = await User.find().sort({ createdAt: -1 });
+    const users = await User.find().sort({ createdAt: -1 }).lean();
     return { success: true, data: JSON.parse(JSON.stringify(users)) };
   } catch (error) {
     console.log(error);
@@ -91,7 +91,7 @@ export async function updateUserBalance(userId: string, amount: number) {
 export async function getUserBalance(userId: string) {
   try {
     await dbConnect();
-    const user = await User.findById(userId).select("balance");
+    const user = await User.findById(userId).select("balance").lean();
     return { success: true, data: JSON.parse(JSON.stringify(user)) };
   } catch (error) {
     console.log(error);

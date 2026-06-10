@@ -1,10 +1,18 @@
 "use client";
 import { useState } from "react";
-import { ChevronLeft, Save, Image as ImageIcon, Plus } from "lucide-react";
+import {
+  ChevronLeft,
+  Save,
+  Image as ImageIcon,
+  Plus,
+  Sparkles,
+  Loader2,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PRODUCT_CATEGORIES, PRODUCT_COLORS } from "../../shared/constants";
 import { createProduct } from "@/src/modules/products/product.actions";
+import { generateDescription } from "../product.gemini.actions";
 
 export default function NewProductPage() {
   const router = useRouter();
@@ -18,7 +26,33 @@ export default function NewProductPage() {
     color: "",
     stock: 0,
     isFeatured: false,
+    description: "",
   });
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleGenerateDescription = async () => {
+    if (!formData.name || !formData.category) {
+      alert("Введіть назву та оберіть категорію перед генерацією опису");
+      return;
+    }
+    setIsGenerating(true);
+    try {
+      const result = await generateDescription(
+        formData.name,
+        formData.category,
+        formData.brand,
+      );
+      if (result.success && result.data) {
+        setFormData({ ...formData, description: result.data });
+      } else {
+        alert(result.error || "Помилка генерації");
+      }
+    } catch {
+      alert("Не вдалося підключитися до сервісу генерації");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
@@ -104,6 +138,38 @@ export default function NewProductPage() {
                 className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-3 px-4 text-zinc-400 text-sm outline-none focus:ring-2 focus:ring-violet-500/10 placeholder:text-zinc-600 transition-all"
               />
             </div>
+          </div>
+
+          <div className="bg-[#0b0c10]/40 border border-zinc-800/40 p-5 sm:p-6 rounded-3xl space-y-5">
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="text-base font-bold text-white">Опис товару</h3>
+              <button
+                type="button"
+                onClick={handleGenerateDescription}
+                disabled={isGenerating}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-600/10 border border-violet-500/20 text-violet-400 hover:bg-violet-600 hover:text-white disabled:opacity-50 text-xs font-bold transition-all cursor-pointer active:scale-95"
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    Генерується...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Згенерувати ШІ
+                  </>
+                )}
+              </button>
+            </div>
+            <textarea
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+              placeholder="Опишіть товар або скористайтеся генератором ШІ..."
+              className="w-full bg-zinc-950/40 border border-zinc-800/40 focus:border-violet-500/50 focus:bg-zinc-950/80 rounded-2xl py-3 px-4 text-white outline-none focus:ring-2 focus:ring-violet-500/10 placeholder:text-zinc-600 transition-all min-h-36 resize-y text-sm leading-relaxed"
+            />
           </div>
 
           <div className="bg-[#0b0c10]/40 border border-zinc-800/30 p-5 sm:p-6 rounded-3xl space-y-4 opacity-60 grayscale-[0.4]">

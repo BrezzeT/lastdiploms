@@ -1,10 +1,11 @@
 import AnimationProductGrid from "@/src/modules/products/components/AnimationProductGrid";
 import { getProducts } from "@/src/modules/products/product.actions";
-import { Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function CatalogPage() {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const res = await getProducts();
   const products = res.success ? res.data : [];
 

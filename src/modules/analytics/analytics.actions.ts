@@ -16,7 +16,9 @@ export async function getDashStats() {
     await dbConnect();
 
     const totalUsers = await User.countDocuments({ role: "user" });
-    const validOrders = await Order.find({ status: { $ne: "cancelled" } });
+    const validOrders = await Order.find({
+      status: { $ne: "cancelled" },
+    }).lean();
     const totalOrders = await Order.countDocuments({});
     const totalRevenue = validOrders.reduce(
       (sum, o) => sum + (o.totalAmount as number),
@@ -91,7 +93,7 @@ export async function getAnalyticsPageStats() {
     await dbConnect();
     const validOrders = await Order.find({
       status: { $ne: "cancelled" },
-    });
+    }).lean();
     const now = new Date();
     const monthlyTrend: SalesDay[] = Array.from({ length: 30 }, (_, i) => {
       const dayStart = new Date(now);
@@ -120,7 +122,7 @@ export async function getAnalyticsPageStats() {
         products: productNames,
       };
     });
-    const allOrder = await Order.find({});
+    const allOrder = await Order.find({}).lean();
     const statusCounts = allOrder.reduce(
       (acc, order) => {
         const status = order.status as string;

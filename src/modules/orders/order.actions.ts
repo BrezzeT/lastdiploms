@@ -91,7 +91,7 @@ ${itemsText}`;
 export async function getOrders() {
   try {
     await dbConnect();
-    const orders = await Order.find({}).sort({ createdAt: -1 });
+    const orders = await Order.find({}).sort({ createdAt: -1 }).lean();
     return { success: true, data: JSON.parse(JSON.stringify(orders)) };
   } catch (error) {
     console.log(error);
@@ -113,7 +113,7 @@ export async function updateOrderStatus(orderId: string, status: string) {
 export async function getOrderById(orderId: string) {
   try {
     await dbConnect();
-    const order = await Order.findById(orderId);
+    const order = await Order.findById(orderId).lean();
     if (!order) {
       return { success: false, error: "Замовлення не знайдено" };
     }
@@ -126,7 +126,7 @@ export async function getOrderById(orderId: string) {
 export async function getUserOrders(userId: string) {
   try {
     await dbConnect();
-    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 }).lean();
     return {
       success: true,
       data: JSON.parse(JSON.stringify(orders)),

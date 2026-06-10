@@ -12,6 +12,7 @@ export type Product = {
   isFeatured?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  description?: string;
 };
 
 export type OrderStatus =
