@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Zap, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import TextEffect from "../shared/ui/TextEffect";
 
 export default function Hero() {
   return (
@@ -27,9 +28,10 @@ export default function Hero() {
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[1.1] tracking-tight mb-6 text-zinc-950">
           Знайди все,{" "}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 to-indigo-600">
-            що потрібно
-          </span>
+          <TextEffect
+            text="що потрібно"
+            className="text-transparent bg-clip-text bg-linear-to-r from-violet-600 to-indigo-600"
+          />
         </h1>
 
         <p className="text-zinc-500 text-base sm:text-lg md:text-xl max-w-2xl mb-8 sm:mb-10 font-normal leading-relaxed">

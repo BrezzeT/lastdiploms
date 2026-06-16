@@ -77,6 +77,10 @@ ${itemsText}`;
     }
     revalidatePath("/admin/orders");
     revalidatePath("/profile");
+    revalidatePath("/admin/products");
+    revalidatePath("/catalog");
+    revalidatePath("/");
+
     return {
       success: true,
       data: JSON.parse(JSON.stringify(newOrder)),
