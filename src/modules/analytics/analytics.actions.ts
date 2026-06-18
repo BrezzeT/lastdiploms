@@ -11,63 +11,131 @@ export interface SalesDay {
   products?: string[];
 }
 
+function getRangeStart(days: number) {
+  const start = new Date();
+  start.setDate(start.getDate() - (days - 1));
+  start.setHours(0, 0, 0, 0);
+  return start;
+}
+
+function formatDayLabel(date: Date) {
+  return date.toLocaleDateString("uk-UA", {
+    day: "2-digit",
+    month: "2-digit",
+  });
+}
+
+function buildEmptyTrend(days: number): SalesDay[] {
+  const now = new Date();
+  return Array.from({ length: days }, (_, i) => {
+    const day = new Date(now);
+    day.setDate(now.getDate() - (days - 1 - i));
+    day.setHours(0, 0, 0, 0);
+    return { date: formatDayLabel(day), revenue: 0, ordersCount: 0 };
+  });
+}
+
+function mergeTrend(
+  days: number,
+  aggregated: {
+    _id: string;
+    revenue: number;
+    ordersCount: number;
+    products?: string[];
+  }[],
+): SalesDay[] {
+  const map = new Map(aggregated.map((row) => [row._id, row]));
+  return buildEmptyTrend(days).map((day) => {
+    const found = map.get(day.date);
+    if (!found) return day;
+    return {
+      date: day.date,
+      revenue: found.revenue,
+      ordersCount: found.ordersCount,
+      ...(found.products ? { products: found.products } : {}),
+    };
+  });
+}
+
 export async function getDashStats() {
   try {
     await dbConnect();
 
-    const totalUsers = await User.countDocuments({ role: "user" });
-    const validOrders = await Order.find({
-      status: { $ne: "cancelled" },
-    }).lean();
-    const totalOrders = await Order.countDocuments({});
-    const totalRevenue = validOrders.reduce(
-      (sum, o) => sum + (o.totalAmount as number),
-      0,
-    );
+    const [totalUsers, totalOrders, statsAgg, recentOrders, revenueAgg] =
+      await Promise.all([
+        User.countDocuments({ role: "user" }),
+        Order.countDocuments({}),
+        Order.aggregate([
+          { $match: { status: { $ne: "cancelled" } } },
+          {
+            $group: {
+              _id: null,
+              totalRevenue: { $sum: "$totalAmount" },
+              validOrdersCount: { $sum: 1 },
+            },
+          },
+        ]),
+        Order.aggregate([
+          { $sort: { createdAt: -1 } },
+          { $limit: 5 },
+          {
+            $lookup: {
+              from: "users",
+              let: { userId: "$userId" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $eq: [{ $toString: "$_id" }, "$$userId"],
+                    },
+                  },
+                },
+                { $project: { name: 1 } },
+              ],
+              as: "user",
+            },
+          },
+          {
+            $project: {
+              _id: { $toString: "$_id" },
+              totalAmount: 1,
+              status: 1,
+              paymentStatus: 1,
+              userName: {
+                $ifNull: [{ $arrayElemAt: ["$user.name", 0] }, "Гість"],
+              },
+            },
+          },
+        ]),
+        Order.aggregate([
+          {
+            $match: {
+              status: { $ne: "cancelled" },
+              createdAt: { $gte: getRangeStart(7) },
+            },
+          },
+          {
+            $group: {
+              _id: {
+                $dateToString: {
+                  format: "%d.%m",
+                  date: "$createdAt",
+                  timezone: "Europe/Kyiv",
+                },
+              },
+              revenue: { $sum: "$totalAmount" },
+              ordersCount: { $sum: 1 },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ]),
+      ]);
+
+    const stats = statsAgg[0];
+    const totalRevenue = stats?.totalRevenue ?? 0;
+    const validOrdersCount = stats?.validOrdersCount ?? 0;
     const averageOrderValue =
-      validOrders.length > 0
-        ? Math.round(totalRevenue / validOrders.length)
-        : 0;
-
-    const latestOrders = await Order.find({})
-      .sort({ createdAt: -1 })
-      .limit(5)
-      .lean();
-    const recentOrders = await Promise.all(
-      latestOrders.map(async (order) => {
-        const user = await User.findById(order.userId).lean();
-        return {
-          _id: (order._id as { toString(): string }).toString(),
-          totalAmount: order.totalAmount as number,
-          status: order.status as string,
-          paymentStatus: order.paymentStatus as string,
-          userName: (user as { name?: string } | null)?.name ?? "Гість",
-        };
-      }),
-    );
-
-    const now = new Date();
-    const revenueTrend: SalesDay[] = Array.from({ length: 7 }, (_, i) => {
-      const dayStart = new Date(now);
-      dayStart.setDate(now.getDate() - (6 - i));
-      dayStart.setHours(0, 0, 0, 0);
-      const dayEnd = new Date(dayStart);
-      dayEnd.setDate(dayStart.getDate() + 1);
-
-      const dayOrders = validOrders.filter((o) => {
-        const d = new Date(o.createdAt as Date);
-        return d >= dayStart && d < dayEnd;
-      });
-
-      return {
-        date: dayStart.toLocaleDateString("uk-UA", {
-          day: "2-digit",
-          month: "2-digit",
-        }),
-        revenue: dayOrders.reduce((s, o) => s + (o.totalAmount as number), 0),
-        ordersCount: dayOrders.length,
-      };
-    });
+      validOrdersCount > 0 ? Math.round(totalRevenue / validOrdersCount) : 0;
 
     return {
       success: true as const,
@@ -77,7 +145,7 @@ export async function getDashStats() {
         totalUsers,
         averageOrderValue,
         recentOrders,
-        revenueTrend,
+        revenueTrend: mergeTrend(7, revenueAgg),
       },
     };
   } catch (error) {
@@ -88,55 +156,85 @@ export async function getDashStats() {
     };
   }
 }
+
 export async function getAnalyticsPageStats() {
   try {
     await dbConnect();
-    const validOrders = await Order.find({
-      status: { $ne: "cancelled" },
-    }).lean();
-    const now = new Date();
-    const monthlyTrend: SalesDay[] = Array.from({ length: 30 }, (_, i) => {
-      const dayStart = new Date(now);
-      dayStart.setDate(now.getDate() - (29 - i));
-      dayStart.setHours(0, 0, 0, 0);
-      const dayEnd = new Date(dayStart);
-      dayEnd.setDate(dayStart.getDate() + 1);
-      const dayOrders = validOrders.filter((o) => {
-        const d = new Date(o.createdAt as Date);
-        return d >= dayStart && d < dayEnd;
-      });
-      const productNames = dayOrders
-        .flatMap((o) =>
-          (o.items as { name: string }[]).map((item) => item.name),
-        )
-        .filter((name, idx, arr) => arr.indexOf(name) === idx)
-        .slice(0, 5);
+    const startDate = getRangeStart(30);
 
-      return {
-        date: dayStart.toLocaleDateString("uk-UA", {
-          day: "2-digit",
-          month: "2-digit",
-        }),
-        revenue: dayOrders.reduce((s, o) => s + (o.totalAmount as number), 0),
-        ordersCount: dayOrders.length,
-        products: productNames,
-      };
-    });
-    const allOrder = await Order.find({}).lean();
-    const statusCounts = allOrder.reduce(
-      (acc, order) => {
-        const status = order.status as string;
-        acc[status] = (acc[status] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>,
+    const [monthlyAgg, productsAgg, orderStatusDate] = await Promise.all([
+      Order.aggregate([
+        {
+          $match: {
+            status: { $ne: "cancelled" },
+            createdAt: { $gte: startDate },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: "%d.%m",
+                date: "$createdAt",
+                timezone: "Europe/Kyiv",
+              },
+            },
+            revenue: { $sum: "$totalAmount" },
+            ordersCount: { $sum: 1 },
+          },
+        },
+        { $sort: { _id: 1 } },
+      ]),
+      Order.aggregate([
+        {
+          $match: {
+            status: { $ne: "cancelled" },
+            createdAt: { $gte: startDate },
+          },
+        },
+        { $unwind: "$items" },
+        {
+          $group: {
+            _id: {
+              day: {
+                $dateToString: {
+                  format: "%d.%m",
+                  date: "$createdAt",
+                  timezone: "Europe/Kyiv",
+                },
+              },
+              name: "$items.name",
+            },
+          },
+        },
+        {
+          $group: {
+            _id: "$_id.day",
+            products: { $addToSet: "$_id.name" },
+          },
+        },
+        {
+          $project: {
+            products: { $slice: ["$products", 5] },
+          },
+        },
+      ]),
+      Order.aggregate([
+        { $group: { _id: "$status", value: { $sum: 1 } } },
+        { $sort: { value: -1 } },
+        { $project: { name: "$_id", value: 1, _id: 0 } },
+      ]),
+    ]);
+
+    const productsMap = new Map(
+      productsAgg.map((row) => [row._id as string, row.products as string[]]),
     );
-    const orderStatusDate = Object.entries(statusCounts).map(
-      ([name, value]) => ({
-        name,
-        value,
-      }),
-    );
+
+    const monthlyTrend = mergeTrend(30, monthlyAgg).map((day) => ({
+      ...day,
+      products: productsMap.get(day.date),
+    }));
+
     return {
       success: true as const,
       data: { monthlyTrend, orderStatusDate },
